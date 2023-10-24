@@ -10,9 +10,9 @@
     "fix": "prettier . --write",
     "preview": "vite preview"
   },
-  "husky": {    
+  "husky": {
     "hooks": {
-      "pre-commit": "npm run fix npm run write"
+      "pre-commit": "npm run fix && npm run write"
     }
   },
   "dependencies": {
