@@ -8,15 +8,11 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "fix": "prettier . --write",
-    "preview": "vite preview"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run fix && npm run lint" // fix husky
-    }
+    "preview": "vite preview",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "eslint-config-airbn-btypescript": "^17.1.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -36,7 +32,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lint-staged": "^15.0.2",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
