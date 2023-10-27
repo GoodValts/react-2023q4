@@ -2,10 +2,10 @@ import { useState } from 'react';
 import getFromApi from './API/apiFunc';
 import BottomSection from './sections/bottom-section';
 import TopSection from './sections/top-section';
-import { BottomSectionProps } from './interfaces/sectionInterface';
+import { ShipParams } from './interfaces/sectionInterface';
 
 function App() {
-  const [results, setResults] = useState<BottomSectionProps[]>([]);
+  const [results, setResults] = useState<ShipParams[]>([]);
 
   const handleSearch = async (searchValue: string) => {
     try {

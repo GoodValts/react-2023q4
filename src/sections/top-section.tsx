@@ -1,15 +1,11 @@
 import React from 'react';
+import { TopSectionInterface } from '../interfaces/sectionInterface';
 
-interface TopSectionProps {
-  onSearch: (searchTerm: string) => void;
-}
-
-interface TopSectionState {
-  searchValue: string;
-}
-
-class TopSection extends React.Component<TopSectionProps, TopSectionState> {
-  constructor(props: TopSectionProps) {
+class TopSection extends React.Component<
+  TopSectionInterface['props'],
+  TopSectionInterface['state']
+> {
+  constructor(props: TopSectionInterface['props']) {
     super(props);
     this.state = {
       searchValue: this.checkInputValue(),

@@ -1,24 +1,7 @@
 import React from 'react';
+import { BottomSectionInterface } from '../interfaces/sectionInterface';
 
-interface BottomSectionProps {
-  results: {
-    MGLT: string;
-    cargo_capacity: string;
-    cost_in_credits: string;
-    crew: string;
-    films: string[];
-    length: string;
-    manufacturer: string;
-    max_atmosphering_speed: string;
-    model: string;
-    name: string;
-    passengers: string;
-    starship_class: string;
-    url: string;
-  }[];
-}
-
-class BottomSection extends React.Component<BottomSectionProps> {
+class BottomSection extends React.Component<BottomSectionInterface> {
   render(): React.ReactNode {
     const { results } = this.props;
 

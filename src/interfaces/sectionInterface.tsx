@@ -1,4 +1,4 @@
-export interface BottomSectionProps {
+export interface ShipParams {
   MGLT: string;
   cargo_capacity: string;
   cost_in_credits: string;
@@ -11,5 +11,18 @@ export interface BottomSectionProps {
   name: string;
   passengers: string;
   starship_class: string;
-  link: string;
+  url: string;
+}
+
+export interface TopSectionInterface {
+  props: {
+    onSearch: (searchTerm: string) => void;
+  };
+  state: {
+    searchValue: string;
+  };
+}
+
+export interface BottomSectionInterface {
+  results: ShipParams[];
 }
