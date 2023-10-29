@@ -9,11 +9,13 @@ class TopSection extends React.Component<
     super(props);
     this.state = {
       searchValue: this.checkInputValue(),
+      isError: false,
     };
   }
 
   inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchValue: event.target.value });
+    console.log('!!!!!value', this.state.searchValue);
   };
 
   checkInputValue = (): string => {
@@ -27,21 +29,35 @@ class TopSection extends React.Component<
     this.props.onSearch(requestStr);
   };
 
+  throwError = () => {
+    this.setState({
+      ...this.state,
+      isError: true,
+    });
+  };
+
   render(): React.ReactNode {
-    return (
-      <section className="top-section">
-        <input
-          className="input"
-          type="text"
-          placeholder="Search here..."
-          value={this.state.searchValue}
-          onChange={this.inputChange}
-        />
-        <button className="button" onClick={this.searchHandle}>
-          Search
-        </button>
-      </section>
-    );
+    if (this.state.isError) {
+      throw new Error('Clicked on error button');
+    } else {
+      return (
+        <section className="top-section">
+          <input
+            className="input"
+            type="text"
+            placeholder="Search here..."
+            value={this.state.searchValue}
+            onChange={this.inputChange}
+          />
+          <button className="button" onClick={this.searchHandle}>
+            Search
+          </button>
+          <button className="button" onClick={this.throwError}>
+            Err btn
+          </button>
+        </section>
+      );
+    }
   }
 }
 

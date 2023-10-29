@@ -20,6 +20,7 @@ export interface TopSectionInterface {
   };
   state: {
     searchValue: string;
+    isError: boolean;
   };
 }
 

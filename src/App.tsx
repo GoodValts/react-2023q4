@@ -32,12 +32,30 @@ class App extends React.Component<propsInt, AppState> {
 
       const apiResults = await getFromApi(searchValue);
       // console.log('searchValue app.tsx', searchValue);
-      // console.log('apiResults app.tsx', apiResults);
+      console.log('apiResults app.tsx', apiResults);
       if (apiResults && apiResults.length > 0) {
         this.setState({ results: apiResults });
         // console.log('useState results=', apiResults);
       } else {
-        this.setState({ results: await getFromApi('') });
+        this.setState({
+          results: [
+            {
+              MGLT: 'n/d',
+              cargo_capacity: 'n/d',
+              cost_in_credits: 'n/d',
+              crew: 'n/d',
+              films: ['n/d'],
+              length: 'n/d',
+              manufacturer: 'n/d',
+              max_atmosphering_speed: 'n/d',
+              model: 'n/d',
+              name: 'No ships with this params!',
+              passengers: 'n/d',
+              starship_class: 'n/d',
+              url: '',
+            },
+          ],
+        });
       }
     } catch (error) {
       console.error(error);
