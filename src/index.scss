@@ -131,11 +131,12 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  color: $highlightedTextColor;
   position: absolute;
   top: 0;
 
   &__loading {
     border-radius: $marginDesctop;
-    opacity: .8;
+    opacity: 0.8;
   }
 }
