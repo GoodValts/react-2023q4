@@ -19,7 +19,6 @@ class TopSection extends React.Component<
   checkInputValue = (): string => {
     const value = localStorage.getItem('searchInputValue');
     if (value) return value;
-
     return '';
   };
 

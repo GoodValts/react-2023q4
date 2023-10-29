@@ -124,3 +124,18 @@ body {
     color: $highlightedTextColor;
   }
 }
+
+.user-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+
+  &__loading {
+    border-radius: $marginDesctop;
+    opacity: .8;
+  }
+}
