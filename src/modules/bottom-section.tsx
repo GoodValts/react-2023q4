@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomSectionInterface } from '../types/sectionInterface';
+import { BottomSectionInterface } from '../types/Interfaces';
 
 class BottomSection extends React.Component<BottomSectionInterface> {
   render(): React.ReactNode {

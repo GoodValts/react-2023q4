@@ -1,5 +1,5 @@
 import React from 'react';
-import { TopSectionInterface } from '../types/sectionInterface';
+import { TopSectionInterface } from '../types/Interfaces';
 
 class TopSection extends React.Component<
   TopSectionInterface['props'],

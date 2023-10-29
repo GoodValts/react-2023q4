@@ -26,3 +26,12 @@ export interface TopSectionInterface {
 export interface BottomSectionInterface {
   results: ShipParams[];
 }
+
+export interface ErrorBoundaryInterface {
+  props: {
+    children: React.ReactNode;
+  };
+  state: {
+    hasError: boolean;
+  };
+}

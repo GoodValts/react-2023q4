@@ -2,7 +2,7 @@ import React from 'react';
 import getFromApi from './common/API/apiFunc';
 import BottomSection from './modules/bottom-section';
 import TopSection from './modules/top-section';
-import { ShipParams } from './types/sectionInterface';
+import { ShipParams } from './types/Interfaces';
 
 interface propsInt {}
 

@@ -1,18 +1,11 @@
 import React, { ErrorInfo } from 'react';
-
-interface ErrorBoundaryProps {
-  children: React.ReactNode;
-}
-
-interface ErrorBoundaryState {
-  hasError: boolean;
-}
+import { ErrorBoundaryInterface } from '../types/Interfaces';
 
 class ErrorBoundary extends React.Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
+  ErrorBoundaryInterface['props'],
+  ErrorBoundaryInterface['state']
 > {
-  constructor(props: ErrorBoundaryProps) {
+  constructor(props: ErrorBoundaryInterface['props']) {
     super(props);
     this.state = {
       hasError: false,
@@ -28,7 +21,7 @@ class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return (
         <p className="user-message">
-          Oops! Something went wrong. Please, reload this page
+          Oops! Something went wrong. Please, reload this page..
         </p>
       );
     }
