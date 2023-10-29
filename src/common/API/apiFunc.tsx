@@ -1,4 +1,4 @@
-import { ShipParams } from '../interfaces/sectionInterface';
+import { ShipParams } from '../../types/sectionInterface';
 
 const getFromApi = (searchValue: string): Promise<ShipParams[]> => {
   const url = 'https://swapi.dev/api';

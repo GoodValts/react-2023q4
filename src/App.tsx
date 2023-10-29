@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import getFromApi from './API/apiFunc';
-import BottomSection from './sections/bottom-section';
-import TopSection from './sections/top-section';
-import { ShipParams } from './interfaces/sectionInterface';
+import getFromApi from './common/API/apiFunc';
+import BottomSection from './modules/bottom-section';
+import TopSection from './modules/top-section';
+import { ShipParams } from './types/sectionInterface';
 
 function App() {
   const [results, setResults] = useState<ShipParams[]>([]);
