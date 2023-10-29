@@ -14,6 +14,14 @@ export interface ShipParams {
   url: string;
 }
 
+export interface AppInterface {
+  props: unknown;
+  state: {
+    results: ShipParams[];
+    loading: boolean;
+  };
+}
+
 export interface TopSectionInterface {
   props: {
     onSearch: (searchTerm: string) => void;

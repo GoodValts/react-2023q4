@@ -2,19 +2,15 @@ import React from 'react';
 import getFromApi from './common/API/apiFunc';
 import BottomSection from './modules/bottom-section';
 import TopSection from './modules/top-section';
-import { ShipParams } from './types/Interfaces';
+import { AppInterface } from './types/Interfaces';
 
-interface propsInt {}
-
-interface AppState {
-  results: ShipParams[];
-  loading: boolean;
-}
-
-class App extends React.Component<propsInt, AppState> {
+class App extends React.Component<
+  AppInterface['props'],
+  AppInterface['state']
+> {
   localStr = localStorage.getItem('searchInputValue') || '';
 
-  constructor(props: propsInt) {
+  constructor(props: AppInterface['props']) {
     super(props);
     this.state = {
       results: [],
@@ -31,11 +27,8 @@ class App extends React.Component<propsInt, AppState> {
       this.setState({ loading: true });
 
       const apiResults = await getFromApi(searchValue);
-      // console.log('searchValue app.tsx', searchValue);
-      console.log('apiResults app.tsx', apiResults);
       if (apiResults && apiResults.length > 0) {
         this.setState({ results: apiResults });
-        // console.log('useState results=', apiResults);
       } else {
         this.setState({
           results: [
@@ -58,7 +51,7 @@ class App extends React.Component<propsInt, AppState> {
         });
       }
     } catch (error) {
-      console.error(error);
+      throw new Error('failed to load from API');
     } finally {
       this.setState({ loading: false });
     }

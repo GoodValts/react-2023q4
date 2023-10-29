@@ -15,7 +15,6 @@ class TopSection extends React.Component<
 
   inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchValue: event.target.value });
-    console.log('!!!!!value', this.state.searchValue);
   };
 
   checkInputValue = (): string => {

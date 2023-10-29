@@ -2,7 +2,6 @@ import { ShipParams } from '../../types/Interfaces';
 
 const getFromApi = (searchValue: string): Promise<ShipParams[]> => {
   const url = 'https://swapi.dev/api';
-  console.log('this.state.searchTerm=', searchValue);
 
   return fetch(`${url}/starships/?search=${searchValue}`)
     .then((response) => {

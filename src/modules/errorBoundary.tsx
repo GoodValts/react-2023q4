@@ -22,6 +22,14 @@ class ErrorBoundary extends React.Component<
       return (
         <p className="user-message">
           Oops! Something went wrong. Please, reload this page..
+          <button
+            className="button"
+            onClick={() => {
+              location.reload();
+            }}
+          >
+            Reload
+          </button>
         </p>
       );
     }
