@@ -22,7 +22,7 @@ const App = () => {
 
       console.log('getFromApi start func');
 
-      const apiResults = await getFromApi(searchValue, 5, 0);
+      const apiResults = await getFromApi(searchValue, 10, 1);
       if (apiResults.products && apiResults.products.length > 0) {
         setResults(apiResults);
       } else {
@@ -42,7 +42,9 @@ const App = () => {
   return (
     <main>
       <header className="header">
-        <h1 className="header__header">StarWars Ships</h1>
+        <h1 className="header__header">
+          <s>StarWars Ships</s> Some crap
+        </h1>
       </header>
       <TopSection onSearch={handleSearch} />
       <BottomSection results={results} />

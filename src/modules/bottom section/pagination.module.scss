@@ -4,7 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: $marginDesctopDiv2;
 }
 
 .button {
@@ -14,16 +13,16 @@
 .button_unactive {
   @include _button();
   background-image: none;
-  background-color: rgba($color: #708090, $alpha: .7);
-  
+  background-color: rgba($color: #708090, $alpha: 0.7);
+
   &:hover {
     cursor: default;
     background-image: none;
-    background-color: rgba($color: #708090, $alpha: .7);
+    background-color: rgba($color: #708090, $alpha: 0.7);
     scale: 1;
   }
 }
-  
+
 .buttonImage {
   width: 20px;
 }
@@ -39,5 +38,21 @@
 
   &:hover {
     cursor: default;
+  }
+}
+
+.select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 222px;
+  text-align: center;
+  border: 1px solid rgba(6, 94, 153, 0.8);
+  border-radius: $marginDesctopDiv4;
+  margin: $marginDesctopDiv4 auto;
+  padding: 2px;
+
+  &:hover {
+    cursor: pointer;
   }
 }

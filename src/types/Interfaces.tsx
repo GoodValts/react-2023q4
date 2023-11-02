@@ -52,5 +52,6 @@ export interface ErrorBoundaryInterface {
 
 export interface PaginationInterface {
   currentPage: number;
-  totalPages: number;
+  totalItems: number;
+  limit: number;
 }
