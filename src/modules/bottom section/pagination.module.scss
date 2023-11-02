@@ -1,0 +1,43 @@
+@import './../../common/utils/general';
+
+.paginationBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: $marginDesctopDiv2;
+}
+
+.button {
+  @include _button();
+}
+
+.button_unactive {
+  @include _button();
+  background-image: none;
+  background-color: rgba($color: #708090, $alpha: .7);
+  
+  &:hover {
+    cursor: default;
+    background-image: none;
+    background-color: rgba($color: #708090, $alpha: .7);
+    scale: 1;
+  }
+}
+  
+.buttonImage {
+  width: 20px;
+}
+
+.pageNumber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff;
+  padding: $marginDesctopDiv2;
+
+  &:hover {
+    cursor: default;
+  }
+}

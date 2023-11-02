@@ -35,7 +35,14 @@ const TopSection = ({ onSearch }: TopSectionInterface['props']) => {
             console.log('searchValue=', searchValue);
           }}
         />
-        <button className="button" onClick={searchHandle}>
+        <button
+          className="button"
+          onClick={(event) => {
+            console.log('click');
+            event.preventDefault();
+            searchHandle();
+          }}
+        >
           Search
         </button>
         <button className="button" onClick={() => setIsError(true)}>

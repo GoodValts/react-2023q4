@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import getFromApi from './common/API/apiFunc';
-import BottomSection from './modules/bottom-section';
+import BottomSection from './modules/bottom section/bottom-section';
 import TopSection from './modules/top-section';
-import { ShipParams } from './types/Interfaces';
+import { responseInterface } from './types/Interfaces';
+
+const emptyObj = {
+  limit: 0,
+  total: 0,
+  skip: 0,
+  products: [],
+};
 
 const App = () => {
-  const [results, setResults] = useState<ShipParams[]>([]);
+  const [results, setResults] = useState<responseInterface>(emptyObj);
   const [loading, setLoading] = useState(false);
   const localStr = localStorage.getItem('searchInputValue') || '';
 
@@ -15,27 +22,11 @@ const App = () => {
 
       console.log('getFromApi start func');
 
-      const apiResults = await getFromApi(searchValue);
-      if (apiResults && apiResults.length > 0) {
+      const apiResults = await getFromApi(searchValue, 5, 0);
+      if (apiResults.products && apiResults.products.length > 0) {
         setResults(apiResults);
       } else {
-        setResults([
-          {
-            MGLT: 'n/d',
-            cargo_capacity: 'n/d',
-            cost_in_credits: 'n/d',
-            crew: 'n/d',
-            films: ['n/d'],
-            length: 'n/d',
-            manufacturer: 'n/d',
-            max_atmosphering_speed: 'n/d',
-            model: 'n/d',
-            name: 'No ships with this params!',
-            passengers: 'n/d',
-            starship_class: 'n/d',
-            url: '',
-          },
-        ]);
+        setResults(emptyObj);
       }
     } catch (error) {
       throw new Error('failed to load from API');

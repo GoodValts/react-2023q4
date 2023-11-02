@@ -1,9 +1,15 @@
-import { ShipParams } from '../../types/Interfaces';
+import { responseInterface } from '../../types/Interfaces';
 
-const getFromApi = (searchValue: string): Promise<ShipParams[]> => {
-  const url = 'https://swapi.dev/api';
+const getFromApi = (
+  searchValue: string,
+  itemsPerPage: number,
+  pageNumber: number
+): Promise<responseInterface> => {
+  const url = 'https://dummyjson.com/products';
+  const limit = itemsPerPage.toString();
+  const skip = ((pageNumber - 1) * itemsPerPage).toString();
 
-  return fetch(`${url}/starships/?search=${searchValue}`)
+  return fetch(`${url}/search?q=${searchValue}&limit=${limit}&skip=${skip}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Error ${response.status}. ${response.statusText}`);
@@ -11,12 +17,15 @@ const getFromApi = (searchValue: string): Promise<ShipParams[]> => {
       return response.json();
     })
     .then((data) => {
-      if (data.count > 0) {
+      if (data.total > 0) {
         searchValue.length > 0
           ? localStorage.setItem('searchInputValue', searchValue)
           : localStorage.clear();
       }
-      return data.results;
+
+      console.log('getFromApi data=', data);
+
+      return data;
     });
 };
 

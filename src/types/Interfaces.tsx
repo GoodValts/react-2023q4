@@ -1,23 +1,28 @@
-export interface ShipParams {
-  MGLT: string;
-  cargo_capacity: string;
-  cost_in_credits: string;
-  crew: string;
-  films: string[];
-  length: string;
-  manufacturer: string;
-  max_atmosphering_speed: string;
-  model: string;
-  name: string;
-  passengers: string;
-  starship_class: string;
-  url: string;
+export interface productParams {
+  brand: string;
+  category: string;
+  description: string;
+  discountPercentage: number;
+  id: number;
+  images: string[];
+  price: number;
+  rating: number;
+  stock: number;
+  thumbnail: string;
+  title: string;
+}
+
+export interface responseInterface {
+  limit: number;
+  skip: number;
+  total: number;
+  products: productParams[];
 }
 
 export interface AppInterface {
   props: unknown;
   state: {
-    results: ShipParams[];
+    results: productParams[];
     loading: boolean;
   };
 }
@@ -33,7 +38,7 @@ export interface TopSectionInterface {
 }
 
 export interface BottomSectionInterface {
-  results: ShipParams[];
+  results: responseInterface;
 }
 
 export interface ErrorBoundaryInterface {
@@ -43,4 +48,9 @@ export interface ErrorBoundaryInterface {
   state: {
     hasError: boolean;
   };
+}
+
+export interface PaginationInterface {
+  currentPage: number;
+  totalPages: number;
 }
