@@ -1,63 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TopSectionInterface } from '../types/Interfaces';
 
-class TopSection extends React.Component<
-  TopSectionInterface['props'],
-  TopSectionInterface['state']
-> {
-  constructor(props: TopSectionInterface['props']) {
-    super(props);
-    this.state = {
-      searchValue: this.checkInputValue(),
-      isError: false,
-    };
-  }
+const TopSection = ({ onSearch }: TopSectionInterface['props']) => {
+  const [searchValue, setSearchValue] = useState('');
+  const [isError, setIsError] = useState(false);
 
-  inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchValue: event.target.value });
+  const searchHandle = () => {
+    let resultValue: string;
+    searchValue ? (resultValue = searchValue.trim()) : (resultValue = '');
+    onSearch(resultValue);
   };
 
-  checkInputValue = (): string => {
+  function checkInputValue() {
     const value = localStorage.getItem('searchInputValue');
-    if (value) return value;
-    return '';
-  };
-
-  searchHandle = () => {
-    const requestStr = this.state.searchValue.trim();
-    this.props.onSearch(requestStr);
-  };
-
-  throwError = () => {
-    this.setState({
-      ...this.state,
-      isError: true,
-    });
-  };
-
-  render(): React.ReactNode {
-    if (this.state.isError) {
-      throw new Error('Clicked on error button');
-    } else {
-      return (
-        <section className="top-section">
-          <input
-            className="input"
-            type="text"
-            placeholder="Search here..."
-            value={this.state.searchValue}
-            onChange={this.inputChange}
-          />
-          <button className="button" onClick={this.searchHandle}>
-            Search
-          </button>
-          <button className="button" onClick={this.throwError}>
-            Err btn
-          </button>
-        </section>
-      );
-    }
+    value ? setSearchValue(value) : setSearchValue('');
   }
-}
+
+  useEffect(() => {
+    checkInputValue();
+  }, []);
+
+  if (isError) {
+    throw new Error('Clicked on error button');
+  } else {
+    return (
+      <section className="top-section">
+        <input
+          className="input"
+          type="text"
+          placeholder="Search here..."
+          value={searchValue}
+          onChange={(event) => {
+            setSearchValue(event.target.value);
+            console.log('searchValue=', searchValue);
+          }}
+        />
+        <button className="button" onClick={searchHandle}>
+          Search
+        </button>
+        <button className="button" onClick={() => setIsError(true)}>
+          Err btn
+        </button>
+      </section>
+    );
+  }
+};
 
 export default TopSection;
