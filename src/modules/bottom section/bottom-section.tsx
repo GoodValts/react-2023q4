@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import ApiContext from '../../common/controllers/apiController';
-import PaginationContext from '../../common/controllers/paginationController';
+import ApiContext from '../../common/controllers/apiContext';
+import PaginationContext from '../../common/controllers/paginationContext';
+import ItemBlock from './item';
 import PageOptions from './pageOptions';
 import Pagination from './pagination';
 import ResultsBlock from './products';
 
 const BottomSection = () => {
-  const { products } = useContext(ApiContext);
+  const { products, item, isItem } = useContext(ApiContext);
   const { totalItems, limit } = useContext(PaginationContext);
 
   return (
@@ -14,6 +15,7 @@ const BottomSection = () => {
       {products && totalItems > 0 && <PageOptions></PageOptions>}
       {products && <ResultsBlock products={products}></ResultsBlock>}
       {products && limit < totalItems && <Pagination></Pagination>}
+      {isItem && <ItemBlock params={item}></ItemBlock>}
     </section>
   );
 };

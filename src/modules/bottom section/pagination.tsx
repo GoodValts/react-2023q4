@@ -4,7 +4,7 @@ import prevPageIco from './../../assets/pagination-icons/prevPage.png';
 import nextPageIco from './../../assets/pagination-icons/nextPage.png';
 import lastPageIco from './../../assets/pagination-icons/lastPage.png';
 import { useContext } from 'react';
-import AppContent from '../../common/controllers/paginationController';
+import AppContent from '../../common/controllers/paginationContext';
 
 const Pagination = () => {
   const { page, setPage, limit, totalItems } = useContext(AppContent);

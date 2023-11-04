@@ -1,7 +1,23 @@
 import styles from './products.module.scss';
 import { ProductsBlockInterface } from '../../types/Interfaces';
+import { getItemFromApi } from '../../common/API/apiFunc';
+import { useContext } from 'react';
+import ApiContext from '../../common/controllers/apiContext';
 
 const ResultsBlock = ({ products }: ProductsBlockInterface) => {
+  const { isItem, setItem, setIsItem } = useContext(ApiContext);
+
+  const handleItem = async (id: number) => {
+    try {
+      const itemData = await getItemFromApi(id);
+      setItem(itemData);
+      setIsItem(true);
+      console.log('isItem=', isItem);
+    } catch (error) {
+      throw new Error('failed to load item from API');
+    }
+  };
+
   return (
     <div className={styles.resultsBlock}>
       {products.map((params, index) => (
@@ -18,9 +34,9 @@ const ResultsBlock = ({ products }: ProductsBlockInterface) => {
             <p className={styles.property}>Amount: {params.stock}</p>
             <p className={styles.property}>{params.description}</p>
           </div>
-          <a className={styles.link} href={params.id.toString()}>
+          <p className={styles.link} onClick={() => handleItem(params.id)}>
             See more
-          </a>
+          </p>
         </div>
       ))}
     </div>

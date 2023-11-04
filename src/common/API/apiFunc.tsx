@@ -1,6 +1,6 @@
-import { responseInterface } from '../../types/Interfaces';
+import { productParams, responseInterface } from '../../types/Interfaces';
 
-const getFromApi = (
+export const getFromApi = (
   searchValue: string,
   itemsPerPage: number,
   pageNumber: number
@@ -29,4 +29,18 @@ const getFromApi = (
     });
 };
 
-export default getFromApi;
+export const getItemFromApi = (id: number): Promise<productParams> => {
+  const url = 'https://dummyjson.com/products';
+
+  return fetch(`${url}/${id.toString()}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}. ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log('getItem data=', data);
+      return data;
+    });
+};

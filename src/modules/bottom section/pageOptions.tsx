@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import AppContent from '../../common/controllers/paginationController';
+import AppContent from '../../common/controllers/paginationContext';
 import styles from './pagination.module.scss';
 
 const PageOptions = () => {

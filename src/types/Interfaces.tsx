@@ -41,6 +41,10 @@ export interface ProductsBlockInterface {
   products: productParams[];
 }
 
+export interface ItemBlockInterface {
+  params: productParams | null;
+}
+
 export interface ErrorBoundaryInterface {
   props: {
     children: React.ReactNode;
@@ -68,4 +72,8 @@ export interface PaginationDataInterface {
 export interface ApiDataInterface {
   products: productParams[] | null;
   setProducts: React.Dispatch<React.SetStateAction<productParams[] | null>>;
+  item: productParams | null;
+  setItem: React.Dispatch<React.SetStateAction<productParams | null>>;
+  isItem: boolean;
+  setIsItem: React.Dispatch<React.SetStateAction<boolean>>;
 }

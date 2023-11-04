@@ -1,16 +1,9 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
-import getFromApi from './common/API/apiFunc';
-import ApiContext from './common/controllers/apiController';
-import AppContext from './common/controllers/paginationController';
+import { getFromApi } from './common/API/apiFunc';
+import ApiContext from './common/controllers/apiContext';
+import AppContext from './common/controllers/paginationContext';
 import BottomSection from './modules/bottom section/bottom-section';
 import TopSection from './modules/top-section';
-
-// const emptyObj = {
-//   limit: 0,
-//   total: 0,
-//   skip: 0,
-//   products: [],
-// };
 
 const App = () => {
   const { limit, page, setTotalItems } = useContext(AppContext);
