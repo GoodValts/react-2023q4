@@ -1,10 +1,10 @@
-import styles from './results.module.scss';
-import { BottomSectionInterface } from '../../types/Interfaces';
+import styles from './products.module.scss';
+import { ProductsBlockInterface } from '../../types/Interfaces';
 
-const ResultsBlock = ({ results }: BottomSectionInterface) => {
+const ResultsBlock = ({ products }: ProductsBlockInterface) => {
   return (
     <div className={styles.resultsBlock}>
-      {results.products.map((params, index) => (
+      {products.map((params, index) => (
         <div key={index} className={styles.itemBlock}>
           <h3 className={styles.header}>{params.title}</h3>
           <img className={styles.img} src={params.thumbnail}></img>

@@ -1,21 +1,16 @@
 import styles from './pagination.module.scss';
-import { PaginationInterface } from '../../types/Interfaces';
 import firstPageIco from './../../assets/pagination-icons/firstPage.png';
 import prevPageIco from './../../assets/pagination-icons/prevPage.png';
 import nextPageIco from './../../assets/pagination-icons/nextPage.png';
 import lastPageIco from './../../assets/pagination-icons/lastPage.png';
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import AppContent from '../../common/controllers/paginationController';
 
-const Pagination = ({
-  currentPage,
-  totalItems,
-  limit,
-}: PaginationInterface) => {
+const Pagination = () => {
+  const { page, setPage, limit, totalItems } = useContext(AppContent);
   // console.log('currentPage=', currentPage);
   // console.log('totalPages=', totalPages);
   const lastPage = Math.ceil(totalItems / limit);
-
-  const [page, setPage] = useState(1);
 
   const changePage = (button: string) => {
     if (page !== 1) {
@@ -29,9 +24,9 @@ const Pagination = ({
     console.log('this.page=', page);
   };
 
-  useEffect(() => {
-    setPage(currentPage);
-  }, [currentPage]);
+  // useEffect(() => {
+  //   setPage(page);
+  // }, [currentPage]);
 
   return (
     <div className={styles.paginationBlock}>
@@ -57,7 +52,7 @@ const Pagination = ({
       </button>
       <div className={styles.pageNumber}>{page.toString()}</div>
       <button
-        className={page === lastPage ? styles.button_unactive : styles.button} // currentPage === lastPage ? styles.button_unactive : styles.button
+        className={page === lastPage ? styles.button_unactive : styles.button}
         onClick={() => changePage('nextPage')}
       >
         <img
@@ -67,7 +62,7 @@ const Pagination = ({
         />
       </button>
       <button
-        className={page === lastPage ? styles.button_unactive : styles.button} // currentPage === lastPage ? styles.button_unactive : styles.button
+        className={page === lastPage ? styles.button_unactive : styles.button}
         onClick={() => changePage('lastPage')}
       >
         <img

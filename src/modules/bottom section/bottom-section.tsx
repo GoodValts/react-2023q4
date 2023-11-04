@@ -1,23 +1,19 @@
-import React from 'react';
-import { BottomSectionInterface } from '../../types/Interfaces';
+import React, { useContext } from 'react';
+import ApiContext from '../../common/controllers/apiController';
+import PaginationContext from '../../common/controllers/paginationController';
 import PageOptions from './pageOptions';
 import Pagination from './pagination';
-import ResultsBlock from './results';
+import ResultsBlock from './products';
 
-const BottomSection = ({ results }: BottomSectionInterface) => {
-  console.log('results=', results);
+const BottomSection = () => {
+  const { products } = useContext(ApiContext);
+  const { totalItems, limit } = useContext(PaginationContext);
 
   return (
     <section className="bottom-section">
-      {results && results.total > 0 && <PageOptions></PageOptions>}
-      <ResultsBlock results={results}></ResultsBlock>
-      {results && results.limit < results.total && (
-        <Pagination
-          currentPage={results.skip / results.limit + 1}
-          totalItems={results.total}
-          limit={results.limit}
-        ></Pagination>
-      )}
+      {products && totalItems > 0 && <PageOptions></PageOptions>}
+      {products && <ResultsBlock products={products}></ResultsBlock>}
+      {products && limit < totalItems && <Pagination></Pagination>}
     </section>
   );
 };

@@ -37,8 +37,8 @@ export interface TopSectionInterface {
   };
 }
 
-export interface BottomSectionInterface {
-  results: responseInterface;
+export interface ProductsBlockInterface {
+  products: productParams[];
 }
 
 export interface ErrorBoundaryInterface {
@@ -54,4 +54,18 @@ export interface PaginationInterface {
   currentPage: number;
   totalItems: number;
   limit: number;
+}
+
+export interface PaginationDataInterface {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  limit: number;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
+  totalItems: number;
+  setTotalItems: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface ApiDataInterface {
+  products: productParams[] | null;
+  setProducts: React.Dispatch<React.SetStateAction<productParams[] | null>>;
 }
