@@ -30,9 +30,6 @@ const ResultsBlock = ({ products }: ProductsBlockInterface) => {
               Price: {Math.round(params.price)}${' '}
               {`(-${params.discountPercentage.toString()}%)`}
             </p>
-            <p className={styles.property}>Rating: {params.rating}</p>
-            <p className={styles.property}>Amount: {params.stock}</p>
-            <p className={styles.property}>{params.description}</p>
           </div>
           <p className={styles.link} onClick={() => handleItem(params.id)}>
             See more

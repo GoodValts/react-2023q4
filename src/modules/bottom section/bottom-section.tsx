@@ -12,9 +12,11 @@ const BottomSection = () => {
 
   return (
     <section className="bottom-section">
-      {products && totalItems > 0 && <PageOptions></PageOptions>}
-      {products && <ResultsBlock products={products}></ResultsBlock>}
-      {products && limit < totalItems && <Pagination></Pagination>}
+      <div className="search-page">
+        {products && totalItems > 0 && <PageOptions></PageOptions>}
+        {products && <ResultsBlock products={products}></ResultsBlock>}
+        {products && limit < totalItems && <Pagination></Pagination>}
+      </div>
       {isItem && <ItemBlock params={item}></ItemBlock>}
     </section>
   );
