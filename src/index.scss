@@ -1,0 +1,104 @@
+@import './common/utils/general';
+
+* {
+  margin: 0;
+  padding: 0;
+  transition-duration: 0.3s;
+}
+
+body {
+  min-height: 100vh;
+  background: url(./assets/background_stars.png),
+    linear-gradient(to top, #09203f 0%, #537895 100%);
+}
+
+.header__header {
+  text-align: center;
+  color: $defaultTextColor;
+  padding-top: $marginDesctop;
+}
+
+.top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $marginDesctop;
+  padding-bottom: $marginDesctopDiv4;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  min-width: 200px;
+  max-width: 250px;
+  border: 1px solid rgba(6, 94, 153, 0.8);
+  border-radius: $marginDesctopDiv4;
+  margin: $marginDesctopDiv4;
+  padding: 4px;
+
+  &:hover {
+    cursor: text;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  background-image: radial-gradient(
+    ellipse,
+    rgba(98, 141, 227, 0.5) 0%,
+    rgba(6, 94, 153, 0.5) 100%,
+    #6b8cce 100%,
+    #a2b6df 100%
+  );
+  color: $highlightedTextColor;
+  border: 0;
+  border-radius: $marginDesctopDiv4;
+  padding: $marginDesctopDiv4 $marginDesctopDiv2;
+  margin: $marginDesctopDiv4;
+
+  &:hover {
+    cursor: pointer;
+    background-image: linear-gradient(
+      to top,
+      #0a2d74 0%,
+      #1e3c72 1%,
+      #2a5298 100%
+    );
+    color: $defaultTextColor;
+    scale: 0.95;
+  }
+}
+
+.user-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  color: $highlightedTextColor;
+  position: absolute;
+  top: 0;
+
+  &__loading {
+    border-radius: $marginDesctop;
+    opacity: 0.8;
+  }
+}
+
+.bottom-section {
+  display: flex;
+  justify-content: center;
+}
+
+.search-page {
+  min-width: 350px;
+}
+
+.item-page {
+  width: 300px;
+}
