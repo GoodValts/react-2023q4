@@ -8,6 +8,8 @@ const ApiContext = createContext<ApiDataInterface>({
   setItem: () => {},
   isItem: false,
   setIsItem: () => {},
+  isLoading: false,
+  setIsLoading: () => {},
 });
 
 export default ApiContext;

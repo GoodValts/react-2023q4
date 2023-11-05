@@ -9,6 +9,7 @@ const AppContentProvider: React.FC<{ children: ReactNode }> = ({
   const [products, setProducts] = useState<productParams[] | null>(null);
   const [item, setItem] = useState<productParams | null>(null);
   const [isItem, setIsItem] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const apiValue = useMemo(() => {
     return {
       products,
@@ -17,8 +18,10 @@ const AppContentProvider: React.FC<{ children: ReactNode }> = ({
       setItem,
       isItem,
       setIsItem,
+      isLoading,
+      setIsLoading,
     };
-  }, [products, item, isItem]);
+  }, [products, item, isItem, isLoading]);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);

@@ -76,4 +76,6 @@ export interface ApiDataInterface {
   setItem: React.Dispatch<React.SetStateAction<productParams | null>>;
   isItem: boolean;
   setIsItem: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }

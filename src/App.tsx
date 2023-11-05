@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react';
+import React, { useEffect, useContext, useCallback } from 'react';
 import { getFromApi } from './common/API/apiFunc';
 import ApiContext from './common/controllers/apiContext';
 import AppContext from './common/controllers/paginationContext';
@@ -7,14 +7,13 @@ import TopSection from './modules/top-section';
 
 const App = () => {
   const { limit, page, setTotalItems } = useContext(AppContext);
-  const { setProducts } = useContext(ApiContext);
-  const [loading, setLoading] = useState(false);
+  const { isLoading, setIsLoading, setProducts } = useContext(ApiContext);
   const localStr = localStorage.getItem('searchInputValue') || '';
 
   const handleSearch = useCallback(
     async (searchValue: string) => {
       try {
-        setLoading(true);
+        setIsLoading(true);
 
         console.log('getFromApi start func');
         console.log('app.ts limit=', limit);
@@ -29,10 +28,10 @@ const App = () => {
       } catch (error) {
         throw new Error('failed to load from API');
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     },
-    [limit, page, setTotalItems, setProducts]
+    [limit, page, setTotalItems, setProducts, setIsLoading]
   );
 
   useEffect(() => {
@@ -48,7 +47,7 @@ const App = () => {
       </header>
       <TopSection onSearch={handleSearch} />
       <BottomSection />
-      {loading && (
+      {isLoading && (
         <div className="user-message">
           <img
             className="user-message__loading"
