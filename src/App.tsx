@@ -15,9 +15,6 @@ const App = () => {
       try {
         setIsLoading(true);
 
-        console.log('getFromApi start func');
-        console.log('app.ts limit=', limit);
-
         const apiResults = await getFromApi(searchValue, limit, page);
         if (apiResults.products && apiResults.products.length > 0) {
           setProducts(apiResults.products);
