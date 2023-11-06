@@ -1,9 +1,15 @@
 import styles from './products.module.scss';
 import { getItemFromApi } from '../../common/API/apiFunc';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ApiContext from '../../common/controllers/apiContext';
+import AppContext from '../../common/controllers/paginationContext';
 
 const ResultsBlock = () => {
+  const navigate = useNavigate();
+  const { page } = useContext(AppContext);
+  const { searchStr } = useContext(ApiContext);
+
   const { isItem, setItem, setIsItem, products, setIsLoading } =
     useContext(ApiContext);
 
@@ -14,6 +20,7 @@ const ResultsBlock = () => {
       setItem(itemData);
       setIsItem(true);
       setIsLoading(false);
+      navigate(`../?search=${searchStr}&page=${page}&id=${id}`);
       console.log('isItem=', isItem);
     } catch (error) {
       throw new Error('failed to load item from API');

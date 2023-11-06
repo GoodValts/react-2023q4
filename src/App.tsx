@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getFromApi } from './common/API/apiFunc';
 import ApiContext from './common/controllers/apiContext';
 import AppContext from './common/controllers/paginationContext';
@@ -6,34 +7,58 @@ import BottomSection from './modules/bottom section/bottom-section';
 import TopSection from './modules/top-section';
 
 const App = () => {
+  const navigate = useNavigate();
+
   const { limit, page, setTotalItems } = useContext(AppContext);
-  const { isLoading, setIsLoading, setProducts } = useContext(ApiContext);
-  const localStr = localStorage.getItem('searchInputValue') || '';
+  const {
+    searchStr,
+    isLoading,
+    setIsItem,
+    setIsLoading,
+    setProducts,
+    setSearchStr,
+  } = useContext(ApiContext);
 
-  const handleSearch = useCallback(
-    async (searchValue: string) => {
-      try {
-        setIsLoading(true);
+  const handleSearch = useCallback(async () => {
+    try {
+      setIsItem(false);
+      setIsLoading(true);
 
-        const apiResults = await getFromApi(searchValue, limit, page);
-        if (apiResults.products && apiResults.products.length > 0) {
-          setProducts(apiResults.products);
-          setTotalItems(apiResults.total);
-        } else {
-          setProducts(null);
-        }
-      } catch (error) {
-        throw new Error('failed to load from API');
-      } finally {
-        setIsLoading(false);
+      console.log('searchStr=', searchStr);
+
+      const strToAPI =
+        searchStr || localStorage.getItem('searchInputValue') || '';
+
+      const apiResults = await getFromApi(strToAPI, limit, page);
+      if (apiResults.products && apiResults.products.length > 0) {
+        setProducts(apiResults.products);
+        setTotalItems(apiResults.total);
+        navigate(`./?search=${searchStr}&page=${page}`);
+      } else {
+        console.log('!apiResults.products');
+        setSearchStr('');
+        setProducts(null);
       }
-    },
-    [limit, page, setTotalItems, setProducts, setIsLoading]
-  );
+    } catch (error) {
+      throw new Error('failed to load from API');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [
+    limit,
+    page,
+    searchStr,
+    setSearchStr,
+    setIsItem,
+    setTotalItems,
+    setProducts,
+    setIsLoading,
+    navigate,
+  ]);
 
   useEffect(() => {
-    handleSearch(localStr);
-  }, [localStr, handleSearch]);
+    handleSearch();
+  }, [handleSearch]);
 
   return (
     <main>
@@ -42,7 +67,7 @@ const App = () => {
           <s>StarWars Ships</s> Some crap
         </h1>
       </header>
-      <TopSection onSearch={handleSearch} />
+      <TopSection />
       <BottomSection />
       {isLoading && (
         <div className="user-message">

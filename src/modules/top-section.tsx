@@ -1,23 +1,29 @@
-import { useState, useEffect } from 'react';
-import { TopSectionInterface } from '../types/Interfaces';
+import { useState, useEffect, useContext } from 'react';
+import ApiContext from '../common/controllers/apiContext';
+// import ApiContext from '../common/controllers/apiContext';
+import AppContext from '../common/controllers/paginationContext';
 
-const TopSection = ({ onSearch }: TopSectionInterface['props']) => {
+const TopSection = () => {
   const [searchValue, setSearchValue] = useState('');
   const [isError, setIsError] = useState(false);
+
+  const { page, setPage } = useContext(AppContext);
+  const { setSearchStr } = useContext(ApiContext);
 
   const searchHandle = () => {
     let resultValue: string;
     searchValue ? (resultValue = searchValue.trim()) : (resultValue = '');
-    onSearch(resultValue);
+    localStorage.setItem('searchInputValue', resultValue);
+    setSearchStr(resultValue);
   };
 
-  function checkInputValue() {
+  function checkLocalStorage() {
     const value = localStorage.getItem('searchInputValue');
     value ? setSearchValue(value) : setSearchValue('');
   }
 
   useEffect(() => {
-    checkInputValue();
+    checkLocalStorage();
   }, []);
 
   if (isError) {
@@ -32,6 +38,7 @@ const TopSection = ({ onSearch }: TopSectionInterface['props']) => {
           value={searchValue}
           onChange={(event) => {
             setSearchValue(event.target.value);
+            console.log('event.target.value=', event.target.value);
             console.log('searchValue=', searchValue);
           }}
         />
@@ -40,7 +47,9 @@ const TopSection = ({ onSearch }: TopSectionInterface['props']) => {
           onClick={(event) => {
             console.log('click');
             event.preventDefault();
+            setPage(1);
             searchHandle();
+            console.log('page=', page);
           }}
         >
           Search

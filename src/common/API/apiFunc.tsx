@@ -9,6 +9,10 @@ export const getFromApi = (
   const limit = itemsPerPage.toString();
   const skip = ((pageNumber - 1) * itemsPerPage).toString();
 
+  console.log('getFromApi searchvalue=', searchValue);
+  console.log('getFromApi itemsPerPage=', itemsPerPage);
+  console.log('getFromApi pageNumber=', pageNumber);
+
   return fetch(`${url}/search?q=${searchValue}&limit=${limit}&skip=${skip}`)
     .then((response) => {
       if (!response.ok) {
@@ -20,7 +24,7 @@ export const getFromApi = (
       if (data.total > 0) {
         searchValue.length > 0
           ? localStorage.setItem('searchInputValue', searchValue)
-          : localStorage.clear();
+          : localStorage.setItem('searchInputValue', '');
       }
 
       console.log('getFromApi data=', data);

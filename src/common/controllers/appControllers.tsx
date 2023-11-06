@@ -6,12 +6,15 @@ import { productParams } from '../../types/Interfaces';
 const AppContentProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [searchStr, setSearchStr] = useState<string>('');
   const [products, setProducts] = useState<productParams[] | null>(null);
   const [item, setItem] = useState<productParams | null>(null);
   const [isItem, setIsItem] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const apiValue = useMemo(() => {
     return {
+      searchStr,
+      setSearchStr,
       products,
       setProducts,
       item,
@@ -21,7 +24,7 @@ const AppContentProvider: React.FC<{ children: ReactNode }> = ({
       isLoading,
       setIsLoading,
     };
-  }, [products, item, isItem, isLoading]);
+  }, [searchStr, products, item, isItem, isLoading]);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);

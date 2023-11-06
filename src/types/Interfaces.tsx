@@ -32,17 +32,12 @@ export interface TopSectionInterface {
     onSearch: (searchTerm: string) => void;
   };
   state: {
-    searchValue: string;
     isError: boolean;
   };
 }
 
 export interface ProductsBlockInterface {
   products: productParams[];
-}
-
-export interface ItemBlockInterface {
-  params: productParams | null;
 }
 
 export interface ErrorBoundaryInterface {
@@ -70,6 +65,8 @@ export interface PaginationDataInterface {
 }
 
 export interface ApiDataInterface {
+  searchStr: string;
+  setSearchStr: React.Dispatch<React.SetStateAction<string>>;
   products: productParams[] | null;
   setProducts: React.Dispatch<React.SetStateAction<productParams[] | null>>;
   item: productParams | null;
