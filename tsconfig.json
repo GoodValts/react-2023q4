@@ -15,7 +15,8 @@
     "isolatedModules": true,
     "noImplicitAny": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["jest", "@testing-library/jest-dom"]
   },
   "include": [".eslintrc.cjs", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]

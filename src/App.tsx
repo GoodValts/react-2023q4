@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useCallback } from 'react';
+import { useEffect, useContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getFromApi } from './common/API/apiFunc';
 import ApiContext from './common/controllers/apiContext';
@@ -24,7 +24,7 @@ const App = () => {
       setIsItem(false);
       setIsLoading(true);
 
-      console.log('searchStr=', searchStr);
+      // console.log('searchStr=', searchStr);
 
       const strToAPI =
         searchStr || localStorage.getItem('searchInputValue') || '';
@@ -35,7 +35,7 @@ const App = () => {
         setTotalItems(apiResults.total);
         navigate(`./?search=${searchStr}&page=${page}`);
       } else {
-        console.log('!apiResults.products');
+        // console.log('!apiResults.products');
         setSearchStr('');
         setProducts(null);
       }
