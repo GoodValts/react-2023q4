@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import ApiContext from '../common/controllers/apiContext';
-// import ApiContext from '../common/controllers/apiContext';
 import AppContext from '../common/controllers/paginationContext';
 
 const TopSection = () => {

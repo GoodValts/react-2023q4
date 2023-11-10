@@ -39,10 +39,6 @@ const Pagination = () => {
     console.log('this.page=', page);
   };
 
-  // useEffect(() => {
-  //   setPage(page);
-  // }, [currentPage]);
-
   return (
     <div className={styles.paginationBlock}>
       <button

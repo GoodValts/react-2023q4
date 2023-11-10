@@ -14,7 +14,7 @@ const BottomSection = () => {
     <section className="bottom-section">
       <div className="search-page">
         {products && totalItems > 0 && <PageOptions></PageOptions>}
-        {products && <ResultsBlock></ResultsBlock>}
+        <ResultsBlock></ResultsBlock>
         {products && limit < totalItems && <Pagination></Pagination>}
       </div>
       {isItem && <ItemBlock></ItemBlock>}

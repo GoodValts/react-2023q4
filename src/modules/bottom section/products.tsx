@@ -30,6 +30,7 @@ const ResultsBlock = () => {
   return (
     <div className={styles.resultsBlock}>
       {products &&
+        products.length > 0 &&
         products.map((params, index) => (
           <div key={index} className={styles.itemBlock}>
             <h3 className={styles.header}>{params.title}</h3>
@@ -46,6 +47,10 @@ const ResultsBlock = () => {
             </p>
           </div>
         ))}
+
+      {!products && (
+        <div className={styles.error}>No products with this params!</div>
+      )}
     </div>
   );
 };
