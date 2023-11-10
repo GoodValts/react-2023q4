@@ -18,7 +18,7 @@ const ItemBlock = () => {
 
   if (item)
     return (
-      <div className={styles.itemBlock}>
+      <div className={styles.itemBlock} data-testid="item">
         <img className={styles.img} src={item.thumbnail}></img>
         <h3 className={styles.header}>{item.title}</h3>
         <div className={styles.params}>

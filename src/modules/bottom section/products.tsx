@@ -10,8 +10,7 @@ const ResultsBlock = () => {
   const { page } = useContext(AppContext);
   const { searchStr } = useContext(ApiContext);
 
-  const { isItem, setItem, setIsItem, products, setIsLoading } =
-    useContext(ApiContext);
+  const { setItem, setIsItem, products, setIsLoading } = useContext(ApiContext);
 
   const handleItem = async (id: number) => {
     try {
@@ -21,7 +20,6 @@ const ResultsBlock = () => {
       setIsItem(true);
       setIsLoading(false);
       navigate(`../?search=${searchStr}&page=${page}&id=${id}`);
-      console.log('isItem=', isItem);
     } catch (error) {
       throw new Error('failed to load item from API');
     }
@@ -33,16 +31,29 @@ const ResultsBlock = () => {
         products.length > 0 &&
         products.map((params, index) => (
           <div key={index} className={styles.itemBlock} data-testid="card">
-            <h3 className={styles.header}>{params.title}</h3>
-            <img className={styles.img} src={params.thumbnail}></img>
+            <h3 className={styles.header} data-testid="card-header">
+              {params.title}
+            </h3>
+            <img
+              className={styles.img}
+              src={params.thumbnail}
+              data-testid="card-image"
+              alt={`${params.title} image`}
+            ></img>
             <div className={styles.params}>
-              <p className={styles.property}>Category: {params.category}</p>
-              <p className={styles.property}>
-                Price: {Math.round(params.price)}${' '}
+              <p className={styles.property} data-testid="card-category">
+                Category: {params.category}
+              </p>
+              <p className={styles.property} data-testid="card-property">
+                Price: {Math.round(params.price).toString()}${' '}
                 {`(-${params.discountPercentage.toString()}%)`}
               </p>
             </div>
-            <p className={styles.link} onClick={() => handleItem(params.id)}>
+            <p
+              className={styles.link}
+              data-testid="card-link"
+              onClick={() => handleItem(params.id)}
+            >
               See more
             </p>
           </div>
