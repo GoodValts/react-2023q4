@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import ErrorBoundary from './modules/errorBoundary';
 import App from './App';
+import NotFoundPage from './modules/404';
 import './index.scss';
 import ItemBlock from './modules/bottom section/item';
 import AppContentProvider from './common/controllers/appControllers';
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
         />
       </Route>
       <Route path="/?search=:searchValue&page=:page" element={<App />} />
+      <Route path="*" element={<NotFoundPage />} />
     </>
   )
 );
@@ -30,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary>
       <AppContentProvider>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </AppContentProvider>
     </ErrorBoundary>
   </React.StrictMode>
