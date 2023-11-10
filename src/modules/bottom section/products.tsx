@@ -32,7 +32,7 @@ const ResultsBlock = () => {
       {products &&
         products.length > 0 &&
         products.map((params, index) => (
-          <div key={index} className={styles.itemBlock}>
+          <div key={index} className={styles.itemBlock} data-testid="card">
             <h3 className={styles.header}>{params.title}</h3>
             <img className={styles.img} src={params.thumbnail}></img>
             <div className={styles.params}>
@@ -49,7 +49,9 @@ const ResultsBlock = () => {
         ))}
 
       {!products && (
-        <div className={styles.error}>No products with this params!</div>
+        <div className={styles.error} data-testid="no_results">
+          No products with this params!
+        </div>
       )}
     </div>
   );

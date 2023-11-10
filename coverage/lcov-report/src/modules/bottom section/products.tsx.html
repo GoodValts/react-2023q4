@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/25</span>
+                <span class='fraction'>15/25</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>5/5</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">60% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>3/5</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">56% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/25</span>
+                <span class='fraction'>15/25</span>
             </div>
         
             
@@ -121,7 +121,9 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -129,14 +131,14 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -150,7 +152,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -158,14 +170,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -211,9 +215,9 @@ const ResultsBlock = () =&gt; {
   return (
     &lt;div className={styles.resultsBlock}&gt;
       {products &amp;&amp;
-<span class="branch-1 cbranch-no" title="branch not covered" >        products.length &gt; 0 </span>&amp;&amp;
-<span class="branch-2 cbranch-no" title="branch not covered" >        products.map(<span class="fstat-no" title="function not covered" >(p</span>arams, index) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;div key={index} c</span>lassName={styles.itemBlock}&gt;
+        products.length &gt; 0 &amp;&amp;
+        products.map((params, index) =&gt; (
+          &lt;div key={index} className={styles.itemBlock} data-testid="card"&gt;
             &lt;h3 className={styles.header}&gt;{params.title}&lt;/h3&gt;
             &lt;img className={styles.img} src={params.thumbnail}&gt;&lt;/img&gt;
             &lt;div className={styles.params}&gt;
@@ -230,7 +234,9 @@ const ResultsBlock = () =&gt; {
         ))}
 &nbsp;
       {!products &amp;&amp; (
-        &lt;div className={styles.error}&gt;No products with this params!&lt;/div&gt;
+        &lt;div className={styles.error} data-testid="no_results"&gt;
+          No products with this params!
+        &lt;/div&gt;
       )}
     &lt;/div&gt;
   );
@@ -244,7 +250,7 @@ export default ResultsBlock;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-10T15:57:46.560Z
+                at 2023-11-10T17:03:25.796Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
