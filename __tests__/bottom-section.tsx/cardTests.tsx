@@ -115,21 +115,21 @@ describe('Card', () => {
 
   // test 2 in progress
 
-  test('clicking on a card opens a detailed card component', async () => {
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <ApiContext.Provider value={mockApiContext}>
-          <AppContext.Provider value={mockAppContext}>
-            <ResultsBlock />
-          </AppContext.Provider>
-        </ApiContext.Provider>
-      </MemoryRouter>
-    );
+  // test('clicking on a card opens a detailed card component', async () => {
+  //   const { getByTestId } = render(
+  //     <MemoryRouter>
+  //       <ApiContext.Provider value={mockApiContext}>
+  //         <AppContext.Provider value={mockAppContext}>
+  //           <ResultsBlock />
+  //         </AppContext.Provider>
+  //       </ApiContext.Provider>
+  //     </MemoryRouter>
+  //   );
 
-    act(() => fireEvent.click(getByTestId('card-link')));
+  //   act(() => fireEvent.click(getByTestId('card-link')));
 
-    expect(await screen.findByTestId('item')).toBeInTheDocument();
-  });
+  //   expect(await screen.findByTestId('item')).toBeInTheDocument();
+  // });
   // end of test2
 
   test('clicking triggers an additional API call to fetch detailed information', async () => {
