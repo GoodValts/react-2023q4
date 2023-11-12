@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ResultsBlock from '../../src/modules/bottom section/products';
 import ApiContext from '../../src/common/controllers/apiContext';
 import AppContext from '../../src/common/controllers/paginationContext';
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 import * as apiFunc from '../../src/common/API/apiFunc';
 
@@ -113,24 +113,24 @@ describe('Card', () => {
     }
   });
 
-  // test 2 in progress
+  test('clicking on a card opens a detailed card component', async () => {
+    const { getByTestId } = render(
+      <BrowserRouter>
+        <ApiContext.Provider value={mockApiContext}>
+          <AppContext.Provider value={mockAppContext}>
+            <ResultsBlock />
+          </AppContext.Provider>
+        </ApiContext.Provider>
+      </BrowserRouter>
+    );
 
-  // test('clicking on a card opens a detailed card component', async () => {
-  //   const { getByTestId } = render(
-  //     <MemoryRouter>
-  //       <ApiContext.Provider value={mockApiContext}>
-  //         <AppContext.Provider value={mockAppContext}>
-  //           <ResultsBlock />
-  //         </AppContext.Provider>
-  //       </ApiContext.Provider>
-  //     </MemoryRouter>
-  //   );
+    act(() => fireEvent.click(getByTestId('card-link')));
 
-  //   act(() => fireEvent.click(getByTestId('card-link')));
-
-  //   expect(await screen.findByTestId('item')).toBeInTheDocument();
-  // });
-  // end of test2
+    await waitFor(() => {
+      const card = screen.queryByTestId('card');
+      expect(card).toBeInTheDocument();
+    });
+  });
 
   test('clicking triggers an additional API call to fetch detailed information', async () => {
     const { getByTestId } = render(

@@ -1,54 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1699811247847" clover="3.2.0">
-  <project timestamp="1699811247847" name="All files">
-    <metrics statements="241" coveredstatements="112" conditionals="49" coveredconditionals="18" methods="49" coveredmethods="16" elements="339" coveredelements="146" complexity="0" loc="241" ncloc="241" packages="5" files="14" classes="14"/>
+<coverage generated="1699819367174" clover="3.2.0">
+  <project timestamp="1699819367174" name="All files">
+    <metrics statements="230" coveredstatements="124" conditionals="49" coveredconditionals="23" methods="49" coveredmethods="18" elements="328" coveredelements="165" complexity="0" loc="230" ncloc="230" packages="5" files="13" classes="13"/>
     <package name="src">
-      <metrics statements="40" coveredstatements="28" conditionals="9" coveredconditionals="8" methods="3" coveredmethods="3"/>
+      <metrics statements="29" coveredstatements="28" conditionals="9" coveredconditionals="9" methods="3" coveredmethods="3"/>
       <file name="App.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\App.tsx">
-        <metrics statements="29" coveredstatements="28" conditionals="9" coveredconditionals="8" methods="3" coveredmethods="3"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="20" count="3" type="stmt"/>
-        <line num="22" count="3" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="24" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="30" count="2" type="cond" truecount="3" falsecount="0"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="33" count="2" type="cond" truecount="4" falsecount="0"/>
+        <metrics statements="29" coveredstatements="28" conditionals="9" coveredconditionals="9" methods="3" coveredmethods="3"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="30" count="3" type="cond" truecount="3" falsecount="0"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="33" count="3" type="cond" truecount="4" falsecount="0"/>
         <line num="34" count="1" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="45" count="2" type="stmt"/>
-        <line num="59" count="3" type="stmt"/>
-        <line num="60" count="2" type="stmt"/>
-        <line num="63" count="3" type="stmt"/>
-        <line num="85" count="2" type="stmt"/>
-      </file>
-      <file name="main.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\main.tsx">
-        <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="59" count="4" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="63" count="4" type="stmt"/>
+        <line num="85" count="3" type="stmt"/>
       </file>
     </package>
     <package name="src.common.API">
@@ -84,9 +70,9 @@
       <metrics statements="24" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="5"/>
       <file name="apiContext.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\common\controllers\apiContext.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
-        <line num="1" count="4" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="17" count="4" type="stmt"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
       </file>
       <file name="appControllers.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\common\controllers\appControllers.tsx">
         <metrics statements="18" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
@@ -111,9 +97,9 @@
       </file>
       <file name="paginationContext.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\common\controllers\paginationContext.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-        <line num="1" count="4" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
       </file>
     </package>
     <package name="src.modules">
@@ -143,25 +129,25 @@
       </file>
       <file name="top-section.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\modules\top-section.tsx">
         <metrics statements="29" coveredstatements="16" conditionals="6" coveredconditionals="2" methods="7" coveredmethods="3"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
         <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="21" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="24" count="3" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="28" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="28" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="31" count="3" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
@@ -171,80 +157,80 @@
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
+        <line num="64" count="3" type="stmt"/>
       </file>
     </package>
     <package name="src.modules.bottom section">
-      <metrics statements="108" coveredstatements="60" conditionals="28" coveredconditionals="8" methods="16" coveredmethods="5"/>
+      <metrics statements="108" coveredstatements="72" conditionals="28" coveredconditionals="12" methods="16" coveredmethods="7"/>
       <file name="bottom-section.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\modules\bottom section\bottom-section.tsx">
-        <metrics statements="12" coveredstatements="12" conditionals="8" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="13" count="3" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
+        <metrics statements="12" coveredstatements="12" conditionals="8" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
       </file>
       <file name="item.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\modules\bottom section\item.tsx">
-        <metrics statements="19" coveredstatements="7" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <metrics statements="19" coveredstatements="14" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="1"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
       </file>
       <file name="pageOptions.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\modules\bottom section\pageOptions.tsx">
-        <metrics statements="17" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <metrics statements="17" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="31" count="2" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
       </file>
       <file name="pagination.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\modules\bottom section\pagination.tsx">
         <metrics statements="36" coveredstatements="11" conditionals="14" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -270,22 +256,22 @@
         <line num="56" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
-        <line num="89" count="2" type="stmt"/>
+        <line num="89" count="3" type="stmt"/>
       </file>
       <file name="products.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\modules\bottom section\products.tsx">
         <metrics statements="24" coveredstatements="23" conditionals="5" coveredconditionals="5" methods="4" coveredmethods="4"/>
-        <line num="1" count="4" type="stmt"/>
-        <line num="2" count="4" type="stmt"/>
-        <line num="3" count="4" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="9" count="10" type="stmt"/>
-        <line num="10" count="10" type="stmt"/>
-        <line num="11" count="10" type="stmt"/>
-        <line num="13" count="10" type="stmt"/>
-        <line num="15" count="10" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="11" type="stmt"/>
+        <line num="10" count="11" type="stmt"/>
+        <line num="11" count="11" type="stmt"/>
+        <line num="13" count="11" type="stmt"/>
+        <line num="15" count="11" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
@@ -294,10 +280,10 @@
         <line num="21" count="2" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="28" count="10" type="stmt"/>
-        <line num="33" count="6" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="33" count="7" type="stmt"/>
         <line num="55" count="2" type="stmt"/>
-        <line num="71" count="4" type="stmt"/>
+        <line num="71" count="5" type="stmt"/>
       </file>
     </package>
   </project>

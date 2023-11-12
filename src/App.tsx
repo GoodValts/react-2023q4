@@ -70,7 +70,7 @@ const App = () => {
       <TopSection />
       <BottomSection />
       {isLoading && (
-        <div className="user-message">
+        <div className="user-message" data-testid="loader">
           <img
             className="user-message__loading"
             src="/src/assets/loading.gif"

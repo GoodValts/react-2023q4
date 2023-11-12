@@ -18,20 +18,38 @@ const ItemBlock = () => {
 
   if (item)
     return (
-      <div className={styles.itemBlock} data-testid="item">
-        <img className={styles.img} src={item.thumbnail}></img>
-        <h3 className={styles.header}>{item.title}</h3>
+      <div className={styles.itemBlock} data-testid="card">
+        <img
+          className={styles.img}
+          src={item.thumbnail}
+          data-testid="image"
+        ></img>
+        <h3 className={styles.header} data-testid="header">
+          {item.title}
+        </h3>
         <div className={styles.params}>
-          <p className={styles.property}>{item.description}</p>
-          <p className={styles.property}>Category: {item.category}</p>
-          <p className={styles.property}>
+          <p className={styles.property} data-testid="description">
+            {item.description}
+          </p>
+          <p className={styles.property} data-testid="category">
+            Category: {item.category}
+          </p>
+          <p className={styles.property} data-testid="price">
             Price: {Math.round(item.price)}${' '}
             {`(-${item.discountPercentage.toString()}%)`}
           </p>
-          <p className={styles.property}>Rating: {item.rating}</p>
-          <p className={styles.property}>Amount: {item.stock}</p>
+          <p className={styles.property} data-testid="rating">
+            Rating: {item.rating}
+          </p>
+          <p className={styles.property} data-testid="amount">
+            Amount: {item.stock}
+          </p>
         </div>
-        <button className={styles.button} onClick={() => handleClick()}>
+        <button
+          className={styles.button}
+          onClick={() => handleClick()}
+          data-testid="button"
+        >
           Close add
         </button>
       </div>

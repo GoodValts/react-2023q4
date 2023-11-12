@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.17% </span>
+                <span class="strong">70.58% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/17</span>
+                <span class='fraction'>12/17</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.17% </span>
+                <span class="strong">70.58% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/17</span>
+                <span class='fraction'>12/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,29 +94,27 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,20 +122,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ApiContext from '../../common/controllers/apiContext';
 import AppContent from '../../common/controllers/paginationContext';
 import styles from './pagination.module.scss';
 &nbsp;
-const PageOptions = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
-  const { setLimit, setPage } = <span class="cstat-no" title="statement not covered" >useContext(AppContent);</span>
-  const { searchStr } = <span class="cstat-no" title="statement not covered" >useContext(ApiContext);</span>
+const PageOptions = () =&gt; {
+  const { setLimit, setPage } = useContext(AppContent);
+  const { searchStr } = useContext(ApiContext);
 &nbsp;
-  const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
+  const navigate = useNavigate();
 &nbsp;
-  const handleLimit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent: React.ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; {</span>
+  const handleLimit = <span class="fstat-no" title="function not covered" >(e</span>vent: React.ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; {
     const limit = <span class="cstat-no" title="statement not covered" >parseInt(event.target.value);</span>
 <span class="cstat-no" title="statement not covered" >    console.log('select: limit=', limit);</span>
 <span class="cstat-no" title="statement not covered" >    setLimit(limit);</span>
@@ -145,7 +145,7 @@ const PageOptions = <span class="fstat-no" title="function not covered" >() =</s
 <span class="cstat-no" title="statement not covered" >    navigate(`./?search=${searchStr}?page=1`);</span>
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;select className={styles.select} onChange={handleLimit}&gt;
       &lt;option value="5"&gt;5 per page&lt;/option&gt;
       &lt;option value="10"&gt;10 per page&lt;/option&gt;
@@ -163,7 +163,7 @@ export default PageOptions;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-12T17:47:27.772Z
+                at 2023-11-12T20:02:47.111Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
