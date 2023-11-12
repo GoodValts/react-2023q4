@@ -11,7 +11,7 @@ const NotFoundPage = () => {
     <section className="user-message">
       <div>
         <div className="header__header">Page not found!</div>
-        <button className="button" onClick={backToMain}>
+        <button className="button" onClick={backToMain} data-testid="not-found">
           Return to main page
         </button>
       </div>

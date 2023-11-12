@@ -44,6 +44,7 @@ const Pagination = () => {
       <button
         className={page === 1 ? styles.button_unactive : styles.button}
         onClick={() => changePage('firstPage')}
+        data-testid="firstPageButton"
       >
         <img
           className={styles.buttonImage}
@@ -54,6 +55,7 @@ const Pagination = () => {
       <button
         className={page === 1 ? styles.button_unactive : styles.button}
         onClick={() => changePage('prevPage')}
+        data-testid="prevPageButton"
       >
         <img
           className={styles.buttonImage}
@@ -65,6 +67,7 @@ const Pagination = () => {
       <button
         className={page === lastPage ? styles.button_unactive : styles.button}
         onClick={() => changePage('nextPage')}
+        data-testid="nextPageButton"
       >
         <img
           className={styles.buttonImage}
@@ -75,6 +78,7 @@ const Pagination = () => {
       <button
         className={page === lastPage ? styles.button_unactive : styles.button}
         onClick={() => changePage('lastPage')}
+        data-testid="lastPageButton"
       >
         <img
           className={styles.buttonImage}
