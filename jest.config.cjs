@@ -3,7 +3,7 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest',
   },
-  setupFilesAfterEnv: ['<rootDir>/setupTest.ts'],
+  setupFilesAfterEnv: ['jest-fetch-mock', '<rootDir>/setupTest.ts'],
   testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
   moduleDirectories: ['node_modules', 'src'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],

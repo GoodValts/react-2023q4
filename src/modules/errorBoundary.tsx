@@ -1,4 +1,4 @@
-import React, { ErrorInfo } from 'react';
+import React from 'react';
 import { ErrorBoundaryInterface } from '../types/Interfaces';
 
 class ErrorBoundary extends React.Component<
@@ -12,8 +12,7 @@ class ErrorBoundary extends React.Component<
     };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary error:', error, errorInfo);
+  componentDidCatch() {
     this.setState({ hasError: true });
   }
 
