@@ -27,6 +27,7 @@ class ErrorBoundary extends React.Component<
             onClick={() => {
               location.reload();
             }}
+            data-testid="errorBoundary"
           >
             Reload
           </button>

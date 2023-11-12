@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import NotFoundPage from '../../src/modules/404';
+import NotFoundPage from '../src/modules/404';
 
 describe('404 Page', () => {
   test('component updates URL query parameter when page change, forwardButtons', () => {
