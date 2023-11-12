@@ -11,7 +11,6 @@ const ItemBlock = () => {
   const { searchStr } = useContext(ApiContext);
 
   const handleClick = () => {
-    console.log('close add');
     navigate(`../?search=${searchStr}&page=${page}`);
     setIsItem(false);
   };

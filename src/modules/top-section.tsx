@@ -6,7 +6,7 @@ const TopSection = () => {
   const [searchValue, setSearchValue] = useState('');
   const [isError, setIsError] = useState(false);
 
-  const { page, setPage } = useContext(AppContext);
+  const { setPage } = useContext(AppContext);
   const { setSearchStr } = useContext(ApiContext);
 
   const searchHandle = () => {
@@ -37,18 +37,14 @@ const TopSection = () => {
           value={searchValue}
           onChange={(event) => {
             setSearchValue(event.target.value);
-            console.log('event.target.value=', event.target.value);
-            console.log('searchValue=', searchValue);
           }}
         />
         <button
           className="button"
           onClick={(event) => {
-            console.log('click');
             event.preventDefault();
             setPage(1);
             searchHandle();
-            console.log('page=', page);
           }}
         >
           Search

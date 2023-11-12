@@ -24,8 +24,6 @@ const App = () => {
       setIsItem(false);
       setIsLoading(true);
 
-      // console.log('searchStr=', searchStr);
-
       const strToAPI =
         searchStr || localStorage.getItem('searchInputValue') || '';
 
@@ -35,7 +33,6 @@ const App = () => {
         setTotalItems(apiResults.total);
         navigate(`./?search=${searchStr}&page=${page}`);
       } else {
-        // console.log('!apiResults.products');
         setSearchStr('');
         setProducts(null);
       }

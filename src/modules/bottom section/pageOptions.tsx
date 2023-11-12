@@ -12,7 +12,6 @@ const PageOptions = () => {
 
   const handleLimit = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const limit = parseInt(event.target.value);
-    console.log('select: limit=', limit);
     setLimit(limit);
     setPage(1);
     navigate(`./?search=${searchStr}?page=1`);

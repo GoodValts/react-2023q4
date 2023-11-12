@@ -9,10 +9,6 @@ export const getFromApi = (
   const limit = itemsPerPage.toString();
   const skip = ((pageNumber - 1) * itemsPerPage).toString();
 
-  console.log('getFromApi searchvalue=', searchValue);
-  console.log('getFromApi itemsPerPage=', itemsPerPage);
-  console.log('getFromApi pageNumber=', pageNumber);
-
   return fetch(`${url}/search?q=${searchValue}&limit=${limit}&skip=${skip}`)
     .then((response) => {
       if (!response.ok) {
@@ -26,8 +22,6 @@ export const getFromApi = (
           ? localStorage.setItem('searchInputValue', searchValue)
           : localStorage.setItem('searchInputValue', '');
       }
-
-      console.log('getFromApi data=', data);
 
       return data;
     });
@@ -44,7 +38,6 @@ export const getItemFromApi = (id: number): Promise<productParams> => {
       return response.json();
     })
     .then((data) => {
-      console.log('getItem data=', data);
       return data;
     });
 };

@@ -36,7 +36,6 @@ const Pagination = () => {
         navigate(`./?search=${searchStr}&page=${lastPage}`);
       }
     }
-    console.log('this.page=', page);
   };
 
   return (
