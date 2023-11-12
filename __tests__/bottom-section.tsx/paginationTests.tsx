@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Pagination from '../../src/modules/bottom section/pagination';
 import ApiContext from '../../src/common/controllers/apiContext';
@@ -95,11 +95,37 @@ describe('Pagination', () => {
 
     const user = userEvent.setup();
 
-    buttonsArr.forEach((el) => {
+    for (const el of buttonsArr) {
       if (el) {
         user.click(el);
-        expect(window.location.pathname).not.toEqual('/?search=&page=2');
+
+        await waitFor(() => {
+          expect(window.location.pathname).not.toEqual('/?search=&page=1');
+        });
       }
-    });
+    }
+  });
+
+  test('Current page number displayed correctly', () => {
+    const mockAppContext = {
+      page: 3,
+      setPage: () => {},
+      limit: 10,
+      setLimit: () => {},
+      totalItems: 30,
+      setTotalItems: () => {},
+    };
+
+    render(
+      <BrowserRouter>
+        <ApiContext.Provider value={mockApiContext}>
+          <PaginationContext.Provider value={mockAppContext}>
+            <Pagination></Pagination>
+          </PaginationContext.Provider>
+        </ApiContext.Provider>
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText('3')).toBeInTheDocument();
   });
 });

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1699830430595" clover="3.2.0">
-  <project timestamp="1699830430595" name="All files">
-    <metrics statements="229" coveredstatements="193" conditionals="49" coveredconditionals="36" methods="49" coveredmethods="37" elements="327" coveredelements="266" complexity="0" loc="229" ncloc="229" packages="5" files="13" classes="13"/>
+<coverage generated="1699831038530" clover="3.2.0">
+  <project timestamp="1699831038530" name="All files">
+    <metrics statements="229" coveredstatements="201" conditionals="49" coveredconditionals="38" methods="49" coveredmethods="39" elements="327" coveredelements="278" complexity="0" loc="229" ncloc="229" packages="5" files="13" classes="13"/>
     <package name="src">
       <metrics statements="29" coveredstatements="28" conditionals="9" coveredconditionals="9" methods="3" coveredmethods="3"/>
       <file name="App.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\App.tsx">
@@ -160,7 +160,7 @@
       </file>
     </package>
     <package name="src.modules.bottom section">
-      <metrics statements="108" coveredstatements="78" conditionals="28" coveredconditionals="20" methods="16" coveredmethods="8"/>
+      <metrics statements="108" coveredstatements="86" conditionals="28" coveredconditionals="22" methods="16" coveredmethods="10"/>
       <file name="bottom-section.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\modules\bottom section\bottom-section.tsx">
         <metrics statements="12" coveredstatements="12" conditionals="8" coveredconditionals="6" methods="1" coveredmethods="1"/>
         <line num="1" count="3" type="stmt"/>
@@ -219,7 +219,7 @@
         <line num="31" count="3" type="stmt"/>
       </file>
       <file name="pagination.tsx" path="C:\Codding\RSSchool\React-2023Q4\src\modules\bottom section\pagination.tsx">
-        <metrics statements="36" coveredstatements="17" conditionals="14" coveredconditionals="8" methods="6" coveredmethods="1"/>
+        <metrics statements="36" coveredstatements="25" conditionals="14" coveredconditionals="10" methods="6" coveredmethods="3"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
@@ -230,28 +230,28 @@
         <line num="8" count="4" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
         <line num="11" count="4" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="19" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="20" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="24" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="20" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
-        <line num="29" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="29" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="30" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
         <line num="34" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
