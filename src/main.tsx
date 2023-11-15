@@ -11,7 +11,8 @@ import App from './App';
 import NotFoundPage from './modules/404';
 import './index.scss';
 import ItemBlock from './modules/bottom section/item';
-import AppContentProvider from './common/controllers/appControllers';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,9 +32,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <AppContentProvider>
+      <Provider store={store}>
         <RouterProvider router={router} />
-      </AppContentProvider>
+      </Provider>
     </ErrorBoundary>
   </React.StrictMode>
 );

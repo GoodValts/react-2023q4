@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import someReducer from './reducers/someReducer';
+import searchStringReducer from './redux/reducers/searchStringReducer';
 
 const rootReducer = combineReducers({
-  someAction: someReducer,
+  saveToLocal: searchStringReducer,
 });
 
 export default rootReducer;

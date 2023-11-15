@@ -1,29 +1,34 @@
+import { useRef } from 'react';
 import { useState, useEffect, useContext } from 'react';
-import ApiContext from '../common/controllers/apiContext';
+import { useDispatch, useSelector } from 'react-redux';
 import AppContext from '../common/controllers/paginationContext';
+import { changeSearchStringAction } from '../common/redux/actions/changeSearchString';
+import { AppState } from '../types/Interfaces';
 
 const TopSection = () => {
-  const [searchValue, setSearchValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
+  const searchValue = useSelector((state: AppState) => state.value);
+  // const [searchString, setSearchString] = useState('');
+
   const [isError, setIsError] = useState(false);
 
   const { setPage } = useContext(AppContext);
-  const { setSearchStr } = useContext(ApiContext);
+  // // const { setSearchStr } = useContext(ApiContext);
 
-  const searchHandle = () => {
-    let resultValue: string;
-    searchValue ? (resultValue = searchValue.trim()) : (resultValue = '');
-    localStorage.setItem('searchInputValue', resultValue);
-    setSearchStr(resultValue);
+  const handleSearch = () => {
+    if (inputRef.current && inputRef.current.value) {
+      dispatch(changeSearchStringAction(inputRef.current.value));
+    } else {
+      dispatch(changeSearchStringAction(''));
+    }
   };
 
-  function checkLocalStorage() {
-    const value = localStorage.getItem('searchInputValue');
-    value ? setSearchValue(value) : setSearchValue('');
-  }
-
+  // Redux
   useEffect(() => {
-    checkLocalStorage();
-  }, []);
+    const value = localStorage.getItem('searchInputValue') || '';
+    dispatch(changeSearchStringAction(value));
+  }, [dispatch]);
 
   if (isError) {
     throw new Error('Clicked on error button');
@@ -31,20 +36,18 @@ const TopSection = () => {
     return (
       <section className="top-section">
         <input
+          ref={inputRef}
           className="input"
           type="text"
           placeholder="Search here..."
           value={searchValue}
-          onChange={(event) => {
-            setSearchValue(event.target.value);
-          }}
         />
         <button
           className="button"
           onClick={(event) => {
             event.preventDefault();
             setPage(1);
-            searchHandle();
+            handleSearch();
           }}
         >
           Search
