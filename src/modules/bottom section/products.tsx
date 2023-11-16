@@ -1,25 +1,25 @@
 import styles from './products.module.scss';
-import { getItemFromApi } from '../../common/API/apiFunc';
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ApiContext from '../../common/controllers/apiContext';
-import AppContext from '../../common/controllers/paginationContext';
+// import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setItemId } from '../../common/redux/viewMode';
+import { selectResults } from '../../common/redux/search';
 
 const ResultsBlock = () => {
-  const navigate = useNavigate();
-  const { page } = useContext(AppContext);
-  const { searchStr } = useContext(ApiContext);
+  // const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  // const { page } = useContext(AppContext);
+  // const { searchStr } = useContext(ApiContext);
 
-  const { setItem, setIsItem, products, setIsLoading } = useContext(ApiContext);
+  const results = useAppSelector(selectResults);
+  const products = results ? results.products : null;
+  // const { setItem, setIsItem, products, setIsLoading } = useContext(ApiContext);
 
   const handleItem = async (id: number) => {
     try {
-      setIsLoading(true);
-      const itemData = await getItemFromApi(id);
-      setItem(itemData);
-      setIsItem(true);
-      setIsLoading(false);
-      navigate(`../?search=${searchStr}&page=${page}&id=${id}`);
+      // setIsLoading(true);
+      // const itemData = await getItemFromApi(id);
+      dispatch(setItemId(id));
+      // navigate(`../?search=${searchStr}&page=${page}&id=${id}`);
     } catch (error) {
       throw new Error('failed to load item from API');
     }

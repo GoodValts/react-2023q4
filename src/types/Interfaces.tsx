@@ -76,3 +76,22 @@ export interface ApiDataInterface {
   isLoading: boolean;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface ReducerType {
+  type: string;
+  payload: string;
+}
+
+export interface AppState {
+  search: {
+    searchValue: string;
+    results: responseInterface | null;
+    item?: productParams;
+  };
+  viewMode: {
+    isLoading: boolean;
+    page: number;
+    itemsPerPage: number;
+    itemId?: number;
+  };
+}

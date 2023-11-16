@@ -1,61 +1,64 @@
-import { useEffect, useContext, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getFromApi } from './common/API/apiFunc';
-import ApiContext from './common/controllers/apiContext';
-import AppContext from './common/controllers/paginationContext';
+// import { useNavigate } from 'react-router-dom';
+import { selectIsLoading } from './common/redux/viewMode';
+import { useAppSelector } from './hooks';
 import BottomSection from './modules/bottom section/bottom-section';
 import TopSection from './modules/top-section';
 
 const App = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { limit, page, setTotalItems } = useContext(AppContext);
-  const {
-    searchStr,
-    isLoading,
-    setIsItem,
-    setIsLoading,
-    setProducts,
-    setSearchStr,
-  } = useContext(ApiContext);
+  const isLoading = useAppSelector(selectIsLoading);
 
-  const handleSearch = useCallback(async () => {
-    try {
-      setIsItem(false);
-      setIsLoading(true);
+  // const { limit, page, setTotalItems } = useContext(AppContext);
+  // const {
+  //   searchStr,
+  //   // isLoading,
+  //   setIsItem,
+  //   // setIsLoading,
+  //   setProducts,
+  //   setSearchStr,
+  // } = useContext(ApiContext);
 
-      const strToAPI =
-        searchStr || localStorage.getItem('searchInputValue') || '';
+  // const handleSearch = useCallback(async () => {
+  //   try {
+  //     setIsItem(false);
+  //     // setIsLoading(true);
 
-      const apiResults = await getFromApi(strToAPI, limit, page);
-      if (apiResults.products && apiResults.products.length > 0) {
-        setProducts(apiResults.products);
-        setTotalItems(apiResults.total);
-        navigate(`./?search=${searchStr}&page=${page}`);
-      } else {
-        setSearchStr('');
-        setProducts(null);
-      }
-    } catch (error) {
-      throw new Error('failed to load from API');
-    } finally {
-      setIsLoading(false);
-    }
-  }, [
-    limit,
-    page,
-    searchStr,
-    setSearchStr,
-    setIsItem,
-    setTotalItems,
-    setProducts,
-    setIsLoading,
-    navigate,
-  ]);
+  //     const strToAPI =
+  //       searchStr || localStorage.getItem('searchInputValue') || '';
 
-  useEffect(() => {
-    handleSearch();
-  }, [handleSearch]);
+  //     const apiResults = await getFromApi(strToAPI, limit, page);
+  //     if (apiResults.products && apiResults.products.length > 0) {
+  //       setProducts(apiResults.products);
+  //       setTotalItems(apiResults.total);
+  //       navigate(`./?search=${searchStr}&page=${page}`);
+  //     } else {
+  //       setSearchStr('');
+  //       setProducts(null);
+  //     }
+  //   } catch (error) {
+  //     throw new Error('failed to load from API');
+  //   } finally {
+  //     // setIsLoading(false);
+  //   }
+  // }, [
+  //   limit,
+  //   page,
+  //   searchStr,
+  //   setSearchStr,
+  //   setIsItem,
+  //   setTotalItems,
+  //   setProducts,
+  //   // setIsLoading,
+  //   navigate,
+  // ]);
+
+  // useEffect(() => {
+  //   const localStr = localStorage.getItem('searchInputValue');
+
+  //   if (localStr) dispatch(setSearchValue(localStr));
+  //   // handleSearch();
+  // }, [handleSearch, dispatch]);
 
   return (
     <main>
