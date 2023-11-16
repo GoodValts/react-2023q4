@@ -83,5 +83,15 @@ export interface ReducerType {
 }
 
 export interface AppState {
-  value: string;
+  search: {
+    searchValue: string;
+    results: responseInterface | null;
+    item?: productParams;
+  };
+  viewMode: {
+    isLoading: boolean;
+    page: number;
+    itemsPerPage: number;
+    itemId?: number;
+  };
 }

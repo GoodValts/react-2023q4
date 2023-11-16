@@ -1,14 +1,21 @@
-import React, { useContext } from 'react';
-import ApiContext from '../../common/controllers/apiContext';
-import PaginationContext from '../../common/controllers/paginationContext';
 import ItemBlock from './item';
-import PageOptions from './pageOptions';
+import PageOptions from './select';
 import Pagination from './pagination';
 import ResultsBlock from './products';
+import { useAppSelector } from '../../hooks';
+import { selectItemId } from '../../common/redux/viewMode';
+import { selectResults } from '../../common/redux/search';
 
 const BottomSection = () => {
-  const { products, isItem } = useContext(ApiContext);
-  const { totalItems, limit } = useContext(PaginationContext);
+  // const { products, isItem } = useContext(ApiContext);
+  // const { totalItems, limit } = useContext(PaginationContext);
+
+  const results = useAppSelector(selectResults);
+  const products = results ? results.products : null;
+  const limit = results ? results.limit : 0;
+  const totalItems = results ? results.total : 0;
+
+  const itemId = useAppSelector(selectItemId);
 
   return (
     <section className="bottom-section">
@@ -17,7 +24,7 @@ const BottomSection = () => {
         <ResultsBlock></ResultsBlock>
         {products && limit < totalItems && <Pagination></Pagination>}
       </div>
-      {isItem && <ItemBlock></ItemBlock>}
+      {itemId && <ItemBlock></ItemBlock>}
     </section>
   );
 };

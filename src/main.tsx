@@ -19,11 +19,11 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<App />}>
         <Route
-          path="?search=:searchValue&page=:page&id=:id"
+          path="search=:searchValue&page=:page&id=:id"
           element={<ItemBlock />}
         />
       </Route>
-      <Route path="/?search=:searchValue&page=:page" element={<App />} />
+      <Route path="/search=:searchValue&page=:page" element={<App />} />
       <Route path="*" element={<NotFoundPage />} />
     </>
   )
