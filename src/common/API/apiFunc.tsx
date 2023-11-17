@@ -17,15 +17,6 @@ export const getFromApi = (
     }
     return response.json();
   });
-  // .then((data) => {
-  //   if (data.total > 0) {
-  //     searchValue.length > 0
-  //       ? localStorage.setItem('searchInputValue', searchValue)
-  //       : localStorage.setItem('searchInputValue', '');
-  //   }
-
-  //   return data;
-  // });
 };
 
 export const getItemFromApi = (id: number): Promise<productParams> => {
