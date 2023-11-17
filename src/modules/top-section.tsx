@@ -14,7 +14,6 @@ const TopSection = () => {
   const page = useAppSelector(selectPage);
 
   const [inputValue, setInputValue] = useState(searchValue);
-
   const [isError, setIsError] = useState(false);
 
   const handleSearch = () => {

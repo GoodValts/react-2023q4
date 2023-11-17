@@ -16,11 +16,6 @@ import { productParams } from '../../types/Interfaces';
 const ResultsBlock = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  // const { page } = useContext(AppContext);
-  // const { searchStr } = useContext(ApiContext);
-
-  // const { setItem, setIsItem, products, setIsLoading } = useContext(ApiContext);
-
   const searchValue = useAppSelector(selectSearchValue);
   const itemsPerPage = useAppSelector(selectItemsPerPage);
   const page = useAppSelector(selectPage);
@@ -33,8 +28,6 @@ const ResultsBlock = () => {
 
   const handleItem = async (id: number) => {
     try {
-      // setIsLoading(true);
-      // const itemData = await getItemFromApi(id);
       dispatch(setItemId(id));
       navigate(`../?search=${searchValue}&page=${page}&id=${id}`);
     } catch (error) {
