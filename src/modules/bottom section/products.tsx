@@ -1,8 +1,17 @@
 import styles from './products.module.scss';
 // import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setItemId } from '../../common/redux/viewMode';
-import { selectResults } from '../../common/redux/search';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../common/redux/hooks/appHooks';
+import {
+  selectItemsPerPage,
+  selectPage,
+  setItemId,
+} from '../../common/redux/reducers/viewMode';
+import { selectSearchValue } from '../../common/redux/reducers/search';
+import { useGetResultsQuery } from '../../common/API/apiService';
+import { productParams } from '../../types/Interfaces';
 
 const ResultsBlock = () => {
   // const navigate = useNavigate();
@@ -10,9 +19,17 @@ const ResultsBlock = () => {
   // const { page } = useContext(AppContext);
   // const { searchStr } = useContext(ApiContext);
 
-  const results = useAppSelector(selectResults);
-  const products = results ? results.products : null;
   // const { setItem, setIsItem, products, setIsLoading } = useContext(ApiContext);
+
+  const searchValue = useAppSelector(selectSearchValue);
+  const itemsPerPage = useAppSelector(selectItemsPerPage);
+  const page = useAppSelector(selectPage);
+  const { data } = useGetResultsQuery({
+    searchValue,
+    itemsPerPage,
+    page,
+  });
+  const products = data?.products;
 
   const handleItem = async (id: number) => {
     try {
@@ -29,7 +46,7 @@ const ResultsBlock = () => {
     <div className={styles.resultsBlock}>
       {products &&
         products.length > 0 &&
-        products.map((params, index) => (
+        products.map((params: productParams, index: number) => (
           <div key={index} className={styles.itemBlock} data-testid="card">
             <h3 className={styles.header} data-testid="card-header">
               {params.title}

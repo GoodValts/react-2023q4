@@ -4,13 +4,17 @@ import prevPageIco from './../../assets/pagination-icons/prevPage.png';
 import nextPageIco from './../../assets/pagination-icons/nextPage.png';
 import lastPageIco from './../../assets/pagination-icons/lastPage.png';
 // import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../common/redux/hooks/appHooks';
 import {
   selectItemsPerPage,
   selectPage,
   setPage,
-} from '../../common/redux/viewMode';
-import { selectResults } from '../../common/redux/search';
+} from '../../common/redux/reducers/viewMode';
+import { selectSearchValue } from '../../common/redux/reducers/search';
+import { useGetResultsQuery } from '../../common/API/apiService';
 
 const Pagination = () => {
   // const { limit, totalItems } = useContext(AppContent);
@@ -19,10 +23,17 @@ const Pagination = () => {
   // const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const searchValue = useAppSelector(selectSearchValue);
   const page = useAppSelector(selectPage);
   const itemsPerPage = useAppSelector(selectItemsPerPage);
 
-  const totalItems = useAppSelector(selectResults)?.total;
+  const { data } = useGetResultsQuery({
+    searchValue,
+    itemsPerPage,
+    page,
+  });
+
+  const totalItems = data?.total;
   const lastPage = totalItems ? Math.ceil(totalItems / itemsPerPage) : 1;
 
   const changePage = (button: string) => {

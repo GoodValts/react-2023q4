@@ -1,13 +1,17 @@
 // import { useNavigate } from 'react-router-dom';
-import { selectIsLoading } from './common/redux/viewMode';
-import { useAppSelector } from './hooks';
+import {
+  selectItemId,
+  selectItemsPerPage,
+  selectPage,
+} from './common/redux/reducers/viewMode';
+import { useAppSelector } from './common/redux/hooks/appHooks';
 import BottomSection from './modules/bottom section/bottom-section';
 import TopSection from './modules/top-section';
+import { selectSearchValue } from './common/redux/reducers/search';
+import { useGetItemQuery, useGetResultsQuery } from './common/API/apiService';
 
 const App = () => {
   // const navigate = useNavigate();
-
-  const isLoading = useAppSelector(selectIsLoading);
 
   // const { limit, page, setTotalItems } = useContext(AppContext);
   // const {
@@ -60,6 +64,17 @@ const App = () => {
   //   // handleSearch();
   // }, [handleSearch, dispatch]);
 
+  const searchValue = useAppSelector(selectSearchValue);
+  const itemsPerPage = useAppSelector(selectItemsPerPage);
+  const page = useAppSelector(selectPage);
+  const id = useAppSelector(selectItemId);
+  const { isFetching: isFetchingResults } = useGetResultsQuery({
+    searchValue,
+    itemsPerPage,
+    page,
+  });
+  const { isFetching: isFetchingItem } = useGetItemQuery(id);
+
   return (
     <main>
       <header className="header">
@@ -69,7 +84,7 @@ const App = () => {
       </header>
       <TopSection />
       <BottomSection />
-      {isLoading && (
+      {(isFetchingResults || isFetchingItem) && (
         <div className="user-message" data-testid="loader">
           <img
             className="user-message__loading"

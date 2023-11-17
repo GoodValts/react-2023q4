@@ -1,18 +1,20 @@
 import styles from './item.module.scss';
 // import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectItem } from '../../common/redux/search';
-import { setItemId } from '../../common/redux/viewMode';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../common/redux/hooks/appHooks';
+import { selectItemId, setItemId } from '../../common/redux/reducers/viewMode';
+import { useGetItemQuery } from '../../common/API/apiService';
 
 const ItemBlock = () => {
   // const { item, setIsItem } = useContext(ApiContext);
   // const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
-  const item = useAppSelector(selectItem);
+  const id = useAppSelector(selectItemId);
+  const { data: item } = useGetItemQuery(id);
   // const { page } = useContext(PaginationContext);
   // const { searchStr } = useContext(ApiContext);
-
   const handleClick = () => {
     // navigate(`../?search=${searchStr}&page=${page}`);
     // setIsItem(false);

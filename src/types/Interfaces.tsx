@@ -82,16 +82,25 @@ export interface ReducerType {
   payload: string;
 }
 
-export interface AppState {
+export interface AppStateInterFace {
   search: {
     searchValue: string;
-    results: responseInterface | null;
-    item?: productParams;
   };
   viewMode: {
     isLoading: boolean;
     page: number;
     itemsPerPage: number;
     itemId?: number;
+  };
+}
+
+export interface ApiInterface {
+  getResults: {
+    searchValue: string;
+    itemsPerPage: number;
+    page: number;
+  };
+  getItem: {
+    itemId: number;
   };
 }

@@ -1,6 +1,6 @@
 // import { useNavigate } from 'react-router-dom';
-import { setItemsPerPage, setPage } from '../../common/redux/viewMode';
-import { useAppDispatch } from '../../hooks';
+import { setItemsPerPage, setPage } from '../../common/redux/reducers/viewMode';
+import { useAppDispatch } from '../../common/redux/hooks/appHooks';
 import styles from './pagination.module.scss';
 
 const PageOptions = () => {

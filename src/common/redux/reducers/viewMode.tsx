@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../store';
-import { AppState } from '../../types/Interfaces';
+import { RootState } from '../../../store';
+import { AppState } from '../../../types/Interfaces';
 
 const initialState: AppState['viewMode'] = {
   isLoading: false,

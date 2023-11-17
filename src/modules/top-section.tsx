@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { selectSearchValue, setSearchValue } from '../common/redux/search';
-import { setPage } from '../common/redux/viewMode';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { selectSearchValue, setSearchValue } from '../common/redux/reducers/search';
+import { setPage } from '../common/redux/reducers/viewMode';
+import { useAppDispatch, useAppSelector } from '../common/redux/hooks/appHooks';
 
 const TopSection = () => {
   const dispatch = useAppDispatch();
