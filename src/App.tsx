@@ -1,4 +1,3 @@
-// import { useNavigate } from 'react-router-dom';
 import {
   selectItemId,
   selectItemsPerPage,
@@ -11,69 +10,17 @@ import { selectSearchValue } from './common/redux/reducers/search';
 import { useGetItemQuery, useGetResultsQuery } from './common/API/apiService';
 
 const App = () => {
-  // const navigate = useNavigate();
-
-  // const { limit, page, setTotalItems } = useContext(AppContext);
-  // const {
-  //   searchStr,
-  //   // isLoading,
-  //   setIsItem,
-  //   // setIsLoading,
-  //   setProducts,
-  //   setSearchStr,
-  // } = useContext(ApiContext);
-
-  // const handleSearch = useCallback(async () => {
-  //   try {
-  //     setIsItem(false);
-  //     // setIsLoading(true);
-
-  //     const strToAPI =
-  //       searchStr || localStorage.getItem('searchInputValue') || '';
-
-  //     const apiResults = await getFromApi(strToAPI, limit, page);
-  //     if (apiResults.products && apiResults.products.length > 0) {
-  //       setProducts(apiResults.products);
-  //       setTotalItems(apiResults.total);
-  //       navigate(`./?search=${searchStr}&page=${page}`);
-  //     } else {
-  //       setSearchStr('');
-  //       setProducts(null);
-  //     }
-  //   } catch (error) {
-  //     throw new Error('failed to load from API');
-  //   } finally {
-  //     // setIsLoading(false);
-  //   }
-  // }, [
-  //   limit,
-  //   page,
-  //   searchStr,
-  //   setSearchStr,
-  //   setIsItem,
-  //   setTotalItems,
-  //   setProducts,
-  //   // setIsLoading,
-  //   navigate,
-  // ]);
-
-  // useEffect(() => {
-  //   const localStr = localStorage.getItem('searchInputValue');
-
-  //   if (localStr) dispatch(setSearchValue(localStr));
-  //   // handleSearch();
-  // }, [handleSearch, dispatch]);
-
   const searchValue = useAppSelector(selectSearchValue);
   const itemsPerPage = useAppSelector(selectItemsPerPage);
   const page = useAppSelector(selectPage);
   const id = useAppSelector(selectItemId);
+
   const { isFetching: isFetchingResults } = useGetResultsQuery({
     searchValue,
     itemsPerPage,
     page,
   });
-  const { isFetching: isFetchingItem } = useGetItemQuery(id);
+  const { isFetching: isFetchingItem } = useGetItemQuery({ itemId: id || 0 });
 
   return (
     <main>

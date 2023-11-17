@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
 const NotFoundPage = () => {
-  const navTo = useNavigate();
+  const navigate = useNavigate();
 
   const backToMain = () => {
-    navTo('/');
+    navigate('/');
   };
 
   return (

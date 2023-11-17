@@ -1,31 +1,29 @@
 import { useState } from 'react';
-import { selectSearchValue, setSearchValue } from '../common/redux/reducers/search';
-import { setPage } from '../common/redux/reducers/viewMode';
+import {
+  selectSearchValue,
+  setSearchValue,
+} from '../common/redux/reducers/search';
+import { selectPage, setPage } from '../common/redux/reducers/viewMode';
 import { useAppDispatch, useAppSelector } from '../common/redux/hooks/appHooks';
+import { useNavigate } from 'react-router-dom';
 
 const TopSection = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const searchValue = useAppSelector(selectSearchValue);
-  // const [searchString, setSearchString] = useState('');
+  const page = useAppSelector(selectPage);
 
   const [inputValue, setInputValue] = useState(searchValue);
 
   const [isError, setIsError] = useState(false);
 
-  // const { setPage } = useContext(AppContext);
-  // // const { setSearchStr } = useContext(ApiContext);
-
   const handleSearch = () => {
     dispatch(setSearchValue(inputValue.trim()));
+    dispatch(setPage(1));
+    inputValue.length > 0
+      ? navigate(`/search=${inputValue}&page=${page}`)
+      : navigate(`/`);
   };
-
-  //  Redux
-  // useEffect(() => {
-  //   const value = localStorage.getItem('searchInputValue') || '';
-  //   console.log('value=', value);
-  //   dispatch(changeSearchStringAction(value));
-  //   searchValue = value;
-  // }, [dispatch]);
 
   if (isError) {
     throw new Error('Clicked on error button');

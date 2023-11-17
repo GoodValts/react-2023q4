@@ -3,58 +3,57 @@ import firstPageIco from './../../assets/pagination-icons/firstPage.png';
 import prevPageIco from './../../assets/pagination-icons/prevPage.png';
 import nextPageIco from './../../assets/pagination-icons/nextPage.png';
 import lastPageIco from './../../assets/pagination-icons/lastPage.png';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   useAppDispatch,
   useAppSelector,
 } from '../../common/redux/hooks/appHooks';
 import {
+  selectItemId,
   selectItemsPerPage,
   selectPage,
+  setItemId,
   setPage,
 } from '../../common/redux/reducers/viewMode';
 import { selectSearchValue } from '../../common/redux/reducers/search';
 import { useGetResultsQuery } from '../../common/API/apiService';
 
 const Pagination = () => {
-  // const { limit, totalItems } = useContext(AppContent);
-  // const lastPage = Math.ceil(totalItems / limit);
-
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
   const searchValue = useAppSelector(selectSearchValue);
   const page = useAppSelector(selectPage);
   const itemsPerPage = useAppSelector(selectItemsPerPage);
-
+  const itemId = useAppSelector(selectItemId);
   const { data } = useGetResultsQuery({
     searchValue,
     itemsPerPage,
     page,
   });
-
   const totalItems = data?.total;
   const lastPage = totalItems ? Math.ceil(totalItems / itemsPerPage) : 1;
 
   const changePage = (button: string) => {
+    if (itemId) dispatch(setItemId(undefined));
+
     if (page !== 1) {
       if (button === 'firstPage') {
         dispatch(setPage(1));
-        // navigate(`../?search=${searchStr}&page=1`);
+        navigate(`../?search=${searchValue}&page=1`);
       }
       if (button === 'prevPage') {
         dispatch(setPage(page - 1));
-        // navigate(`../?search=${searchStr}&page=${page - 1}`);
+        navigate(`../?search=${searchValue}&page=${page - 1}`);
       }
     }
     if (page !== lastPage) {
       if (button === 'nextPage') {
         dispatch(setPage(page + 1));
-        // navigate(`./?search=${searchStr}&page=${page + 1}`);
+        navigate(`./?search=${searchValue}&page=${page + 1}`);
       }
       if (button === 'lastPage') {
         dispatch(setPage(lastPage));
-        // navigate(`./?search=${searchStr}&page=${lastPage}`);
+        navigate(`./?search=${searchValue}&page=${lastPage}`);
       }
     }
   };

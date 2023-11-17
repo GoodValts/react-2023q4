@@ -1,5 +1,5 @@
 import styles from './products.module.scss';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   useAppDispatch,
   useAppSelector,
@@ -14,7 +14,7 @@ import { useGetResultsQuery } from '../../common/API/apiService';
 import { productParams } from '../../types/Interfaces';
 
 const ResultsBlock = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   // const { page } = useContext(AppContext);
   // const { searchStr } = useContext(ApiContext);
@@ -36,7 +36,7 @@ const ResultsBlock = () => {
       // setIsLoading(true);
       // const itemData = await getItemFromApi(id);
       dispatch(setItemId(id));
-      // navigate(`../?search=${searchStr}&page=${page}&id=${id}`);
+      navigate(`../?search=${searchValue}&page=${page}&id=${id}`);
     } catch (error) {
       throw new Error('failed to load item from API');
     }

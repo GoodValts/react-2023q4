@@ -12,13 +12,10 @@ import { selectSearchValue } from '../../common/redux/reducers/search';
 import { useGetResultsQuery } from '../../common/API/apiService';
 
 const BottomSection = () => {
-  // const { products, isItem } = useContext(ApiContext);
-  // const { totalItems, limit } = useContext(PaginationContext);
-
-  // const results = useAppSelector(selectResults);
   const searchValue = useAppSelector(selectSearchValue);
   const itemsPerPage = useAppSelector(selectItemsPerPage);
   const page = useAppSelector(selectPage);
+  const itemId = useAppSelector(selectItemId);
   const { data } = useGetResultsQuery({
     searchValue,
     itemsPerPage,
@@ -27,8 +24,6 @@ const BottomSection = () => {
   const products = data ? data.products : null;
   const limit = data ? data.limit : 0;
   const totalItems = data ? data.total : 0;
-
-  const itemId = useAppSelector(selectItemId);
 
   return (
     <section className="bottom-section">
