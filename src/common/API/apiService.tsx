@@ -19,7 +19,7 @@ export const dummyjsonApi = createApi({
       },
     }),
     getItem: builder.query<productParams, ApiInterface['getItem']>({
-      query: (id) => `/${id}`,
+      query: ({ itemId }) => `/${itemId}`,
     }),
   }),
 });
