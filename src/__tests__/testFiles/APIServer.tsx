@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import ErrorBoundary from '../src/modules/errorBoundary';
+import ErrorBoundary from '../../modules/errorBoundary';
 
 describe('ErrorBoundary', () => {
   const reloadPage = jest.fn();

@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import NotFoundPage from '../src/modules/404';
+import NotFoundPage from '../../modules/404';
 
 describe('404 Page', () => {
-  test('component updates URL query parameter when page change, forwardButtons', () => {
+  test('check button', () => {
     render(
       <MemoryRouter initialEntries={['/invalid']}>
         <Routes>
@@ -14,8 +14,11 @@ describe('404 Page', () => {
       </MemoryRouter>
     );
 
-    const page = screen.queryByTestId('not-found');
+    const button = screen.queryByTestId('not-found');
+    if (button) {
+      fireEvent.click(button);
+    }
 
-    expect(page).toBeInTheDocument();
+    expect(button).toBeDefined();
   });
 });

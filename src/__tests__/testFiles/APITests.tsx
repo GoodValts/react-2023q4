@@ -1,4 +1,4 @@
-import { getFromApi, getItemFromApi } from '../src/common/API/apiFunc';
+import { getFromApi, getItemFromApi } from '../../common/API/apiFunc';
 
 describe('API functions', () => {
   beforeEach(() => {
