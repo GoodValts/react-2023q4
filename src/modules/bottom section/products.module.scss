@@ -1,0 +1,64 @@
+@import './../../common/general';
+
+.resultsBlock {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.itemBlock {
+  display: block;
+  width: 280px;
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  border: 1px solid rgba($color: #4682b4, $alpha: 0.3);
+  border-radius: calc($marginDesctop / 2);
+  margin: $marginDesctop;
+  padding: $marginDesctopDiv2 0;
+}
+
+.header {
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;
+  color: $highlightedTextColor;
+  margin-bottom: $marginDesctopDiv2;
+}
+
+.params {
+  margin: 0 auto;
+}
+
+.property {
+  text-align: center;
+  color: $defaultTextColor;
+  margin: $marginDesctopDiv4;
+  overflow-wrap: break-word;
+}
+
+.link {
+  display: block;
+  text-align: center;
+  text-decoration: underline;
+  color: $defaultTextColor;
+  margin: $marginDesctopDiv2 auto;
+  margin-bottom: 0;
+
+  &:hover {
+    cursor: pointer;
+    color: $highlightedTextColor;
+  }
+}
+
+.img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.error {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  color: $highlightedTextColor;
+  margin: $marginDesctop;
+}

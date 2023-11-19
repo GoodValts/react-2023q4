@@ -1,0 +1,58 @@
+@import './../../common/general';
+
+.paginationBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  @include _button();
+}
+
+.button_unactive {
+  @include _button();
+  background-image: none;
+  background-color: rgba($color: #708090, $alpha: 0.7);
+
+  &:hover {
+    cursor: default;
+    background-image: none;
+    background-color: rgba($color: #708090, $alpha: 0.7);
+    scale: 1;
+  }
+}
+
+.buttonImage {
+  width: 20px;
+}
+
+.pageNumber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff;
+  padding: $marginDesctopDiv2;
+
+  &:hover {
+    cursor: default;
+  }
+}
+
+.select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 222px;
+  text-align: center;
+  border: 1px solid rgba(6, 94, 153, 0.8);
+  border-radius: $marginDesctopDiv4;
+  margin: $marginDesctopDiv4 auto;
+  padding: 2px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
