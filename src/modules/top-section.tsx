@@ -44,10 +44,15 @@ const TopSection = () => {
           dispatch(setPage(1));
           handleSearch();
         }}
+        data-testid="search-button"
       >
         Search
       </button>
-      <button className="button" onClick={() => setIsError(true)}>
+      <button
+        className="button"
+        onClick={() => setIsError(true)}
+        data-testid="error-button"
+      >
         Err btn
       </button>
     </section>

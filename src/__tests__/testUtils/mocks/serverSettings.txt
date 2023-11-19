@@ -1,0 +1,39 @@
+import { http, HttpResponse } from 'msw';
+import { setupServer } from 'msw/node';
+
+const item = {
+  id: 3,
+  title: 'Samsung Universe 9',
+  description: "Samsung's new variant which goes beyond Galaxy to the Universe",
+  price: 1249,
+  discountPercentage: 15.46,
+  rating: 4.09,
+  stock: 36,
+  brand: 'Samsung',
+  category: 'smartphones',
+  thumbnail: 'https://i.dummyjson.com/data/products/3/thumbnail.jpg',
+  images: ['https://i.dummyjson.com/data/products/3/1.jpg'],
+};
+const items = {
+  limits: 0,
+  skip: 0,
+  total: 1,
+  products: [item],
+};
+
+export const responceArr = [
+  http.get('https://dummyjson.com/products', () => {
+    return HttpResponse.json({
+      items,
+    });
+  }),
+  http.get('https://dummyjson.com/products/:idNumber', () => {
+    return HttpResponse.json({
+      item,
+    });
+  }),
+];
+
+const server = setupServer(...responceArr);
+
+export default server;
