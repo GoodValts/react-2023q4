@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { dummyjsonApi } from './common/API/apiService';
+import { dummyJsonApi } from './common/API/apiService';
 import searchSlice from './common/redux/reducers/search';
 import viewModeSlice from './common/redux/reducers/viewMode';
 
@@ -8,10 +8,10 @@ export const store = configureStore({
   reducer: {
     search: searchSlice,
     viewMode: viewModeSlice,
-    [dummyjsonApi.reducerPath]: dummyjsonApi.reducer,
+    [dummyJsonApi.reducerPath]: dummyJsonApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(dummyjsonApi.middleware),
+    getDefaultMiddleware().concat(dummyJsonApi.middleware),
 });
 
 export default store;
@@ -25,7 +25,7 @@ setupListeners(store.dispatch);
 const reducers = combineReducers({
   search: searchSlice,
   viewMode: viewModeSlice,
-  [dummyjsonApi.reducerPath]: dummyjsonApi.reducer,
+  [dummyJsonApi.reducerPath]: dummyJsonApi.reducer,
 });
 
 export type RootReducer = ReturnType<typeof reducers>;

@@ -7,7 +7,7 @@ import {
 
 const url = 'https://dummyjson.com/products';
 
-export const dummyjsonApi = createApi({
+export const dummyJsonApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: url }),
   endpoints: (builder) => ({
@@ -24,4 +24,4 @@ export const dummyjsonApi = createApi({
   }),
 });
 
-export const { useGetResultsQuery, useGetItemQuery } = dummyjsonApi;
+export const { useGetResultsQuery, useGetItemQuery } = dummyJsonApi;
