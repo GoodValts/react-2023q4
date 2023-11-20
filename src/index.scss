@@ -15,15 +15,15 @@ body {
 .header__header {
   text-align: center;
   color: $defaultTextColor;
-  padding-top: $marginDesctop;
+  padding-top: $marginDesktop;
 }
 
 .top-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: $marginDesctop;
-  padding-bottom: $marginDesctopDiv4;
+  padding: $marginDesktop;
+  padding-bottom: $marginDesktopDiv4;
 }
 
 .input {
@@ -34,8 +34,8 @@ body {
   min-width: 200px;
   max-width: 250px;
   border: 1px solid rgba(6, 94, 153, 0.8);
-  border-radius: $marginDesctopDiv4;
-  margin: $marginDesctopDiv4;
+  border-radius: $marginDesktopDiv4;
+  margin: $marginDesktopDiv4;
   padding: 4px;
 
   &:hover {
@@ -57,9 +57,9 @@ body {
   );
   color: $highlightedTextColor;
   border: 0;
-  border-radius: $marginDesctopDiv4;
-  padding: $marginDesctopDiv4 $marginDesctopDiv2;
-  margin: $marginDesctopDiv4;
+  border-radius: $marginDesktopDiv4;
+  padding: $marginDesktopDiv4 $marginDesktopDiv2;
+  margin: $marginDesktopDiv4;
 
   &:hover {
     cursor: pointer;
@@ -85,7 +85,7 @@ body {
   top: 0;
 
   &__loading {
-    border-radius: $marginDesctop;
+    border-radius: $marginDesktop;
     opacity: 0.8;
   }
 }

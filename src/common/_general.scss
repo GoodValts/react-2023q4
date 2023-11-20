@@ -1,6 +1,6 @@
-$marginDesctop: 20px;
-$marginDesctopDiv2: calc($marginDesctop / 2);
-$marginDesctopDiv4: calc($marginDesctop / 4);
+$marginDesktop: 20px;
+$marginDesktopDiv2: calc($marginDesktop / 2);
+$marginDesktopDiv4: calc($marginDesktop / 4);
 
 $defaultTextColor: #ffdead;
 $highlightedTextColor: #faebd7;
@@ -32,8 +32,8 @@ $highlightedTextColor: #faebd7;
   color: $highlightedTextColor;
   border: 0;
   border-radius: 10px;
-  padding: $marginDesctopDiv4 $marginDesctopDiv2;
-  margin: $marginDesctopDiv4;
+  padding: $marginDesktopDiv4 $marginDesktopDiv2;
+  margin: $marginDesktopDiv4;
 
   &:hover {
     cursor: pointer;
