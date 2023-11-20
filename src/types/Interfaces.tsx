@@ -82,7 +82,7 @@ export interface ReducerType {
   payload: string;
 }
 
-export interface AppStateInterFace {
+export interface AppStateInterface {
   search: {
     searchValue: string;
   };

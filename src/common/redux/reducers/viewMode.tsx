@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../store';
-import { AppStateInterFace } from '../../../types/Interfaces';
+import { AppStateInterface } from '../../../types/Interfaces';
 
-const initialState: AppStateInterFace['viewMode'] = {
+const initialState: AppStateInterface['viewMode'] = {
   isLoading: false,
   page: 1,
   itemsPerPage: 5,
