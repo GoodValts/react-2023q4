@@ -26,7 +26,7 @@ const ResultsBlock = () => {
   });
   const products = data?.products;
 
-  const handleItem = async (id: number) => {
+  const handleItem = (id: number) => {
     try {
       dispatch(setItemId(id));
       navigate(`../?search=${searchValue}&page=${page}&id=${id}`);
