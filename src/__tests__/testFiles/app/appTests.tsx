@@ -16,7 +16,7 @@ describe('App', () => {
     expect(headerElement).toBeInTheDocument();
 
     try {
-      const errorBtn = await screen.queryByTestId('error-button');
+      const errorBtn = screen.queryByTestId('error-button');
       if (errorBtn) fireEvent.click(errorBtn);
     } catch {
       console.log('error button clicked');

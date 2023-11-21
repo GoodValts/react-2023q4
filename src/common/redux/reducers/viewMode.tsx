@@ -25,7 +25,6 @@ export const viewModeSlice = createSlice({
     },
     setItemId: (state, action: PayloadAction<number | undefined>) => {
       state.itemId = action.payload;
-      console.log('setItemId=', state.itemId);
     },
   },
 });

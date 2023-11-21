@@ -1,16 +1,21 @@
 module.exports = {
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest',
   },
-  setupFilesAfterEnv: [
-    'jest-fetch-mock',
-    '<rootDir>/src/__tests__/setupTest.ts',
-  ],
   testMatch: [
     '**/__tests__/testFiles/**/*.[jt]s?(x)',
     '**/?(*.)+(spec|test).[jt]s?(x)',
   ],
+  setupFilesAfterEnv: [
+    'jest-fetch-mock',
+    '<rootDir>/src/__tests__/setupTest.ts',
+  ],
+  setupFiles: ['./jest.polyfills.js'],
+  passWithNoTests: true,
   moduleDirectories: ['node_modules', 'src'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   moduleNameMapper: {
@@ -20,5 +25,4 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
   coveragePathIgnorePatterns: ['src/main.tsx'],
-  passWithNoTests: true,
 };

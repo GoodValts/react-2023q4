@@ -25,11 +25,9 @@ const ItemBlock = () => {
     navigate(`../?search=${searchValue}&page=${page}`);
   };
 
-  console.log('item selected', item);
-
   if (item)
     return (
-      <div className={styles.itemBlock} data-testid="card">
+      <div className={styles.itemBlock} data-testid="detailed-card">
         <img
           className={styles.img}
           src={item.thumbnail}

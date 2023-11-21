@@ -36,6 +36,7 @@ const TopSection = () => {
         placeholder="Search here..."
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
+        data-testid="search-input"
       />
       <button
         className="button"
