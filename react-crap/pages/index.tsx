@@ -1,3 +1,4 @@
+import TopSection from "@/modules/top-section";
 import Head from "next/head";
 
 export default function Home() {
@@ -9,7 +10,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <main className="main"></main>
+      <main className="main">
+        <header className="header">
+          <h1 className="header__header">
+            <s>StarWars Ships</s> Some crap
+          </h1>
+        </header>
+        <TopSection></TopSection>
+      </main>
     </>
   );
 }

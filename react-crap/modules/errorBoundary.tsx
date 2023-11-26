@@ -1,19 +1,21 @@
-import React from 'react';
-import { ErrorBoundaryInterface } from '../types/Interfaces';
+import React, { ErrorInfo } from "react";
+import { ErrorBoundaryInterface } from "../types/Interfaces";
 
 class ErrorBoundary extends React.Component<
-  ErrorBoundaryInterface['props'],
-  ErrorBoundaryInterface['state']
+  ErrorBoundaryInterface["props"],
+  ErrorBoundaryInterface["state"]
 > {
-  constructor(props: ErrorBoundaryInterface['props']) {
+  constructor(props: ErrorBoundaryInterface["props"]) {
     super(props);
-    this.state = {
-      hasError: false,
-    };
+    this.state = { hasError: false };
   }
 
-  componentDidCatch() {
-    this.setState({ hasError: true });
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.log({ error, errorInfo });
   }
 
   render() {
