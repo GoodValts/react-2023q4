@@ -3,15 +3,10 @@ import TopSection from "@/modules/top-section";
 import { wrapper } from "@/store/store";
 import { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
-import {
-  dummyJsonApi,
-  getItem,
-  getResults,
-  useGetResultsQuery,
-} from "./api/hello";
+import { getResults } from "./api/hello";
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async (context) => {
+  (store) => async () => {
     const results = await store.dispatch(
       getResults.initiate({
         searchValue: store.getState().search.searchValue,

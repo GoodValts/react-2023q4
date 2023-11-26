@@ -1,15 +1,7 @@
-import ItemBlock from "./item";
 import PageOptions from "./select";
 import Pagination from "./pagination";
 import ResultsBlock from "./products";
-import { useAppSelector } from "@/store/hooks/appHooks";
-import {
-  selectItemId,
-  selectItemsPerPage,
-  selectPage,
-} from "@/store/reducers/viewMode";
-import { selectSearchValue } from "@/store/reducers/search";
-import { productParams, responseInterface } from "@/types/Interfaces";
+import { responseInterface } from "@/types/Interfaces";
 
 const BottomSection = (props: responseInterface) => {
   const { products, limit = 5, total = 100 } = props;

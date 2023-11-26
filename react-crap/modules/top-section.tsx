@@ -1,4 +1,3 @@
-import { useAppDispatch } from "@/store/hooks/appHooks";
 import { setSearchValue } from "@/store/reducers/search";
 import { setPage } from "@/store/reducers/viewMode";
 import { useState } from "react";
