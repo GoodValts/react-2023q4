@@ -1,0 +1,45 @@
+@import './../../common/general';
+
+.itemBlock {
+  display: block;
+  background-color: rgba($color: #000000, $alpha: 0.1);
+  border-radius: $marginDesktopDiv4;
+  width: 30%;
+  max-width: 500px;
+  min-width: 250px;
+  margin-top: calc($marginDesktop * 2);
+  margin-left: $marginDesktop;
+  padding: $marginDesktopDiv2 0;
+  padding-top: 0;
+  overflow: hidden;
+}
+
+.header {
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+  color: $highlightedTextColor;
+  margin: $marginDesktop;
+}
+
+.params {
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+.property {
+  text-align: center;
+  color: $defaultTextColor;
+  margin: $marginDesktopDiv4;
+  overflow-wrap: break-word;
+}
+
+.button {
+  @include _button();
+  margin: $marginDesktop auto;
+}
+
+.img {
+  width: 100%;
+  object-fit: cover;
+}
