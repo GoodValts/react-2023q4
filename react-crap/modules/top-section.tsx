@@ -1,16 +1,15 @@
+import { useAppDispatch } from "@/store/hooks/appHooks";
+import { setSearchValue } from "@/store/reducers/search";
+import { setPage } from "@/store/reducers/viewMode";
 import { useState } from "react";
 
 const TopSection = () => {
   const [inputValue, setInputValue] = useState("");
-  const [isError, setIsError] = useState(false);
 
   const handleSearch = () => {
-    console.log(`search ${inputValue}`);
+    setSearchValue(inputValue.trim());
+    setPage(1);
   };
-
-  if (isError) {
-    throw new Error("Clicked on error button");
-  }
 
   return (
     <section className="top-section">
@@ -34,7 +33,9 @@ const TopSection = () => {
       </button>
       <button
         className="button"
-        onClick={() => setIsError(true)}
+        onClick={() => {
+          throw new Error("Clicked on error button");
+        }}
         data-testid="error-button"
       >
         Err btn

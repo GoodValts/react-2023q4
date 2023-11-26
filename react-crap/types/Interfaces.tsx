@@ -13,10 +13,10 @@ export interface productParams {
 }
 
 export interface responseInterface {
-  limit: number;
-  skip: number;
-  total: number;
-  products: productParams[];
+  limit?: number;
+  skip?: number;
+  total?: number;
+  products?: productParams[];
 }
 
 export interface AppInterface {
@@ -90,7 +90,7 @@ export interface AppStateInterface {
     isLoading: boolean;
     page: number;
     itemsPerPage: number;
-    itemId?: number;
+    itemId: number | null;
   };
 }
 

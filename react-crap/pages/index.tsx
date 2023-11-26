@@ -1,7 +1,36 @@
+import BottomSection from "@/modules/bottomsection";
 import TopSection from "@/modules/top-section";
+import { wrapper } from "@/store/store";
+import { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
+import {
+  dummyJsonApi,
+  getItem,
+  getResults,
+  useGetResultsQuery,
+} from "./api/hello";
 
-export default function Home() {
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    const results = await store.dispatch(
+      getResults.initiate({
+        searchValue: store.getState().search.searchValue,
+        page: store.getState().viewMode.page,
+        itemsPerPage: store.getState().viewMode.itemsPerPage,
+      })
+    );
+
+    return {
+      props: {
+        products: results.data,
+      },
+    };
+  }
+);
+
+export default function Home({
+  products,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Head>
@@ -17,6 +46,7 @@ export default function Home() {
           </h1>
         </header>
         <TopSection></TopSection>
+        <BottomSection {...products}></BottomSection>
       </main>
     </>
   );
