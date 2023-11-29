@@ -37,7 +37,7 @@ label {
   margin-bottom: $marginDesktopDiv2;
 }
 
-input, select {
+input:not([type="submit"]), select {
   display: flex;
   min-width: 220px;
   min-height: 20px;

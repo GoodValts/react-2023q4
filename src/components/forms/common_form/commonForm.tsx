@@ -78,7 +78,7 @@ const CommonForm = () => {
           </div>
           <span className={styles.errorText}></span>
         </div>
-        <button className={styles.button}>Submit</button>
+        <input type="submit" className={styles.button}></input>
       </form>
     </section>
   );
