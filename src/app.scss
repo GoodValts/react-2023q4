@@ -1,0 +1,13 @@
+@import './general';
+
+* {
+  margin: 0;
+  padding: 0;
+  transition-duration: 0.3s;
+}
+
+body {
+  min-height: 100vh;
+  background: url(./assets/background_stars.png),
+    linear-gradient(to top, #09203f 0%, #537895 100%);
+}
