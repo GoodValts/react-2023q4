@@ -1,8 +1,29 @@
+import { useState } from 'react';
 import styles from './commonForm.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { countriesArr } from '../data/countries';
+
+const countryLabelsArr = [...countriesArr];
+
+const errorsObj = {
+  name: [],
+  age: [],
+  mail: [],
+  password: [],
+  gender: [],
+  photo: [],
+  country: [],
+};
 
 const CommonForm = () => {
   const navTo = useNavigate();
+
+  const [countryLabels, setCountryLabels] = useState(countryLabelsArr);
+  const [isShowLabels, setIsShowLabels] = useState(false);
+  const [country, setCountry] = useState('');
+
+  const [isChecked, setIsChecked] = useState(false);
+  const [errors, setErrors] = useState(errorsObj);
 
   const navToTerms = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     event.preventDefault();
@@ -11,6 +32,16 @@ const CommonForm = () => {
 
   const goBack = () => {
     navTo(-1);
+  };
+
+  const handleCountry = (str: string) => {
+    const arr = [...countryLabelsArr];
+    const newArr = arr.filter((el) => el.label.toLowerCase().includes(str));
+    setCountryLabels(newArr);
+    setCountry(str);
+
+    console.log('str=', str);
+    console.log('newArr=', newArr);
   };
 
   return (
@@ -24,7 +55,7 @@ const CommonForm = () => {
         <div>
           <label htmlFor="name">Name:</label>
           <input type="text" id="name"></input>
-          <span className={styles.errorText}></span>
+          <span className={styles.errorText}>{errors.name[0]}</span>
         </div>
         <div>
           <label htmlFor="age">Age:</label>
@@ -63,8 +94,33 @@ const CommonForm = () => {
         </div>
         <div>
           <label htmlFor="country">Country:</label>
-          <input type="text" id="country"></input>
-          <span className={styles.errorText}></span>
+          <input
+            type="text"
+            id="country"
+            value={country}
+            onChange={(event) => handleCountry(event.target.value)}
+            onClick={() => setIsShowLabels(true)}
+          ></input>
+          <div className="flex">
+            {isShowLabels && (
+              <ul className={styles.fakeOptionList}>
+                {countryLabels.map((option, index) => (
+                  <li
+                    key={index}
+                    value={option.value}
+                    className={styles.fakeOption}
+                    onClick={() => {
+                      setIsShowLabels(false);
+                      setCountry(option.label);
+                    }}
+                  >
+                    {option.label}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <span className={styles.errorText}></span>{' '}
         </div>
         <div>
           <div className="flex">
@@ -78,7 +134,12 @@ const CommonForm = () => {
           </div>
           <span className={styles.errorText}></span>
         </div>
-        <input type="submit" className={styles.button}></input>
+        <input
+          type="submit"
+          className={
+            isChecked ? styles.button : `${styles.button} ${styles.unActive}`
+          }
+        ></input>
       </form>
     </section>
   );

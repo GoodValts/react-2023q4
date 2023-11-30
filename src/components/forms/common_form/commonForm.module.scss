@@ -97,6 +97,28 @@ option {
   background-color: rgba($color: #000000, $alpha: 0.8);
 }
 
+.fakeOptionList {
+  position: absolute;
+  width: 220px;
+  height: 100px;
+  overflow: auto;
+  background-color: #333333;
+  margin: 0 auto;
+}
+
+.fakeOption {
+  text-align: center;
+  list-style-type: none;
+  font-size: 1rem;
+  color: $highlightedTextColor;
+  margin: 0 auto;
+  margin-bottom: $marginDesktopDiv4;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .errorText {
   display: block;
   height: 1rem;
@@ -113,6 +135,20 @@ option {
 .button {
   @include _button;
   margin: $marginDesktopDiv2 auto;
+}
+
+.unActive {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+  background-blend-mode: multiply,multiply;
+  color: silver;
+
+  &:hover {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+    background-blend-mode: multiply,multiply;
+    color: silver;
+    cursor: not-allowed;
+    scale: 1;
+  }
 }
 
 .link {
