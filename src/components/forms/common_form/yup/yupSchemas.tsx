@@ -24,6 +24,10 @@ export const schemaEmail = yup.object().shape({
 
 export const schemaPassword = yup.object().shape({
   password: passwordValidation,
+});
+
+export const schemaValidatePassword = yup.object().shape({
+  password: yup.string(),
   confirmPassword: confirmPasswordValidation,
 });
 

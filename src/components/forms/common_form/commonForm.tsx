@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styles from './commonForm.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { countriesArr } from '../data/countries';
@@ -10,7 +10,9 @@ import {
   schemaName,
   schemaPassword,
   schemaPhoto,
+  schemaValidatePassword,
 } from './yup/yupSchemas';
+import { configureStore } from '@reduxjs/toolkit';
 
 const countryLabelsArr = [...countriesArr];
 
@@ -19,17 +21,39 @@ const errorsObj = {
   age: '',
   email: '',
   password: '',
+  confirmPassword: '',
   gender: '',
   photo: '',
   country: '',
+  terms: '',
 };
+
+function checkErrors(obj: typeof errorsObj): boolean {
+  console.log('obj=', obj);
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (obj[key as keyof typeof obj] !== '') {
+        return false;
+      }
+    }
+  }
+  return true;
+}
 
 const CommonForm = () => {
   const navTo = useNavigate();
+  const nameRef = useRef(null);
+  const ageRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
+  const genderRef = useRef(null);
+  const photoRef = useRef(null);
+  const countryRef = useRef(null);
+  const termsRef = useRef(null);
 
   const [countryLabels, setCountryLabels] = useState(countryLabelsArr);
   const [isShowLabels, setIsShowLabels] = useState(false);
-  const [country, setCountry] = useState('');
 
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState(errorsObj);
@@ -47,8 +71,10 @@ const CommonForm = () => {
     const arr = [...countryLabelsArr];
     const newArr = arr.filter((el) => el.label.toLowerCase().includes(str));
     setCountryLabels(newArr);
-    setCountry(str);
-    validateCountry(country);
+
+    const input = countryRef.current as HTMLInputElement | null;
+    console.log('input?.value=', input?.value);
+    if (input) validateCountry(input.value);
 
     console.log('str=', str);
     console.log('newArr=', newArr);
@@ -64,12 +90,19 @@ const CommonForm = () => {
   };
 
   const validateAge = (number: number) => {
-    schemaAge
-      .validate({ age: number })
-      .then(() => setErrors((prevErrors) => ({ ...prevErrors, age: '' })))
-      .catch((err) =>
-        setErrors((prevErrors) => ({ ...prevErrors, age: err.message }))
-      );
+    if (isNaN(number)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        age: 'Age is a required field',
+      }));
+    } else {
+      schemaAge
+        .validate({ age: number })
+        .then(() => setErrors((prevErrors) => ({ ...prevErrors, age: '' })))
+        .catch((err) =>
+          setErrors((prevErrors) => ({ ...prevErrors, age: err.message }))
+        );
+    }
   };
 
   const validateEmail = (str: string) => {
@@ -81,14 +114,25 @@ const CommonForm = () => {
       );
   };
 
-  // const validatePassword = (str: string) => {
-  //   schemaPassword
-  //     .validate({ password: str })
-  //     .then(() => setErrors((prevErrors) => ({ ...prevErrors, password: '' })))
-  //     .catch((err) =>
-  //       setErrors((prevErrors) => ({ ...prevErrors, password: err.message }))
-  //     );
-  // };
+  const validatePassword = (str: string, strRepeated: string) => {
+    schemaPassword
+      .validate({ password: str })
+      .then(() => setErrors((prevErrors) => ({ ...prevErrors, password: '' })))
+      .catch((err) =>
+        setErrors((prevErrors) => ({ ...prevErrors, password: err.message }))
+      );
+    schemaValidatePassword
+      .validate({ password: str, confirmPassword: strRepeated })
+      .then(() =>
+        setErrors((prevErrors) => ({ ...prevErrors, confirmPassword: '' }))
+      )
+      .catch((err) =>
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          confirmPassword: err.message,
+        }))
+      );
+  };
 
   const validateGender = (str: string) => {
     schemaGender
@@ -124,6 +168,51 @@ const CommonForm = () => {
       );
   };
 
+  const validateForm = () => {
+    const checkbox = termsRef.current as HTMLInputElement | null;
+    if (checkbox?.checked) {
+      setErrors((prevErrors) => ({ ...prevErrors, terms: '' }));
+
+      const name = nameRef.current as HTMLInputElement | null;
+      const age = ageRef.current as HTMLInputElement | null;
+      const email = emailRef.current as HTMLInputElement | null;
+      const password = passwordRef.current as HTMLInputElement | null;
+      const confirmPassword =
+        confirmPasswordRef.current as HTMLInputElement | null;
+      const gender = genderRef.current as HTMLInputElement | null;
+      const photo = photoRef.current as HTMLInputElement | null;
+      const country = countryRef.current as HTMLInputElement | null;
+      if (
+        name &&
+        age &&
+        email &&
+        password &&
+        confirmPassword &&
+        gender &&
+        photo &&
+        country
+      ) {
+        validateName(name.value);
+        validateAge(parseInt(age.value));
+        validateAge(parseInt(age.value));
+        validateEmail(email.value);
+        validatePassword(password.value, confirmPassword.value);
+        validateGender(gender.value);
+        validatePhoto(photo.files ? photo.files[0] : null);
+        validateCountry(country.value);
+
+        console.log(errors.name);
+      } else {
+        throw new Error('something went wrong');
+      }
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        terms: 'Conditions & Terms should be accepted',
+      }));
+    }
+  };
+
   return (
     <section className={styles.section}>
       <button className={styles.returnButton} onClick={goBack}>
@@ -138,7 +227,10 @@ const CommonForm = () => {
             type="text"
             id="name"
             name="name"
-            onChange={(event) => validateName(event.target.value)}
+            onChange={(event) => {
+              validateName(event.target.value);
+            }}
+            ref={nameRef}
           ></input>
           <span className={styles.errorText}>{errors.name}</span>
         </div>
@@ -150,29 +242,54 @@ const CommonForm = () => {
             max="1000"
             id="age"
             name="age"
-            onChange={(event) => validateAge(parseInt(event.target.value) || 0)}
+            onChange={(event) => validateAge(parseInt(event.target.value))}
+            ref={ageRef}
           ></input>
           <span className={styles.errorText}>{errors.age}</span>
         </div>
         <div>
-          <label htmlFor="mail">E-mail:</label>
+          <label htmlFor="email">E-mail:</label>
           <input
             type="email"
-            id="mail"
+            id="email"
             name="email"
             onChange={(event) => validateEmail(event.target.value)}
+            ref={emailRef}
           ></input>
           <span className={styles.errorText}>{errors.email}</span>
         </div>
         <div>
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password"></input>
-          <span className={styles.errorText}></span>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            onChange={(event) => {
+              const confirmPassword =
+                confirmPasswordRef.current as HTMLInputElement | null;
+              if (confirmPassword) {
+                validatePassword(event.target.value, confirmPassword?.value);
+              }
+            }}
+            ref={passwordRef}
+          ></input>
+          <span className={styles.errorText}>{errors.password}</span>
         </div>
         <div>
           <label htmlFor="confirmPassword">Confirm password:</label>
-          <input type="password" id="confirmPassword" name="password"></input>
-          <span className={styles.errorText}></span>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="password"
+            onChange={(event) => {
+              const password = passwordRef.current as HTMLInputElement | null;
+              if (password) {
+                validatePassword(password.value, event.target.value);
+              }
+            }}
+            ref={confirmPasswordRef}
+          ></input>
+          <span className={styles.errorText}>{errors.confirmPassword}</span>
         </div>
         <div>
           <label htmlFor="gender">Gender:</label>
@@ -180,6 +297,7 @@ const CommonForm = () => {
             id="gender"
             name="gender"
             onChange={(event) => validateGender(event.target.value)}
+            ref={genderRef}
           >
             <option value="n/d"></option>
             <option value="male">male</option>
@@ -200,6 +318,7 @@ const CommonForm = () => {
                 event.currentTarget.files ? event.currentTarget.files[0] : null
               )
             }
+            ref={photoRef}
           ></input>
           <span className={styles.errorText}>{errors.photo}</span>
         </div>
@@ -209,9 +328,9 @@ const CommonForm = () => {
             type="text"
             id="country"
             name="country"
-            value={country}
             onChange={(event) => handleCountry(event.target.value)}
             onClick={() => setIsShowLabels(true)}
+            ref={countryRef}
           ></input>
           <div className="flex">
             {isShowLabels && (
@@ -223,7 +342,12 @@ const CommonForm = () => {
                     className={styles.fakeOption}
                     onClick={() => {
                       setIsShowLabels(false);
-                      setCountry(option.label);
+                      const input =
+                        countryRef.current as HTMLInputElement | null;
+                      if (input) {
+                        input.value = option.label;
+                        validateCountry(input?.value);
+                      }
                     }}
                   >
                     {option.label}
@@ -236,7 +360,15 @@ const CommonForm = () => {
         </div>
         <div>
           <div className="flex">
-            <input type="checkbox" id="acceptTerms"></input>
+            <input
+              type="checkbox"
+              id="acceptTerms"
+              onChange={() => {
+                validateForm();
+                console.log(checkErrors(errors));
+              }}
+              ref={termsRef}
+            ></input>
             <label htmlFor="acceptTerms" className={styles.inline}>
               I accept{' '}
               <span className={styles.link} onClick={navToTerms}>
@@ -244,14 +376,14 @@ const CommonForm = () => {
               </span>
             </label>
           </div>
-          <span className={styles.errorText}></span>
+          <span className={styles.errorText}>{errors.terms}</span>
         </div>
-        <input
-          type="submit"
-          className={
-            isChecked ? styles.button : `${styles.button} ${styles.unActive}`
-          }
-        ></input>
+        {isChecked && <input type="submit" className={styles.button}></input>}
+        {!isChecked && (
+          <button className={`${styles.button} ${styles.unActive}`}>
+            Submit
+          </button>
+        )}
       </form>
     </section>
   );
