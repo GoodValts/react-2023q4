@@ -8,6 +8,7 @@ import {
   nameValidation,
   passwordValidation,
   photoValidation,
+  termsValidation,
 } from './yupTests';
 
 export const schemaName = yup.object().shape({
@@ -43,13 +44,14 @@ export const schemaCountry = yup.object().shape({
   country: countryValidation,
 });
 
-// export const schemaMain = yup.object().shape({
-//   name: nameValidation,
-//   age: ageValidation,
-//   email: emailValidation,
-//   password: passwordValidation,
-//   confirmPassword: confirmPasswordValidation,
-//   gender: genderValidation,
-//   photo: photoValidation,
-//   country: countryValidation,
-// });
+export const schemaMain = yup.object().shape({
+  name: nameValidation,
+  age: ageValidation,
+  email: emailValidation,
+  password: passwordValidation,
+  confirmPassword: confirmPasswordValidation,
+  gender: genderValidation,
+  photo: photoValidation,
+  country: countryValidation,
+  terms: termsValidation,
+});

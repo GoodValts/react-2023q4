@@ -71,3 +71,12 @@ export const countryValidation = yup
     return newArr.includes(string);
   })
   .required();
+
+export const termsValidation = yup
+  .boolean()
+  .test(
+    'termsTest',
+    'Conditions & Terms should be accepted',
+    (value) => value === true
+  )
+  .required();

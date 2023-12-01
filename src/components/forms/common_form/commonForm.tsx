@@ -7,12 +7,22 @@ import {
   schemaCountry,
   schemaEmail,
   schemaGender,
+  schemaMain,
   schemaName,
   schemaPassword,
   schemaPhoto,
   schemaValidatePassword,
 } from './yup/yupSchemas';
-import { configureStore } from '@reduxjs/toolkit';
+import { convertToBase64 } from '../data/converterBase64';
+import { useAppDispatch } from '../../../store/hooks';
+import {
+  setCommonAge,
+  setCommonCountry,
+  setCommonGender,
+  setCommonMail,
+  setCommonName,
+  setCommonPhoto,
+} from '../../../store/reducers/commonFormSlice';
 
 const countryLabelsArr = [...countriesArr];
 
@@ -28,20 +38,10 @@ const errorsObj = {
   terms: '',
 };
 
-function checkErrors(obj: typeof errorsObj): boolean {
-  console.log('obj=', obj);
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      if (obj[key as keyof typeof obj] !== '') {
-        return false;
-      }
-    }
-  }
-  return true;
-}
-
 const CommonForm = () => {
   const navTo = useNavigate();
+  const dispatch = useAppDispatch();
+
   const nameRef = useRef(null);
   const ageRef = useRef(null);
   const emailRef = useRef(null);
@@ -80,13 +80,18 @@ const CommonForm = () => {
     console.log('newArr=', newArr);
   };
 
+  const changeValues = () => {
+    const checkbox = termsRef.current as HTMLInputElement | null;
+    if (checkbox) checkbox.checked = false;
+  };
+
   const validateName = (str: string) => {
     schemaName
       .validate({ name: str })
       .then(() => setErrors((prevErrors) => ({ ...prevErrors, name: '' })))
-      .catch((err) =>
-        setErrors((prevErrors) => ({ ...prevErrors, name: err.message }))
-      );
+      .catch((err) => {
+        setErrors((prevErrors) => ({ ...prevErrors, name: err.message }));
+      });
   };
 
   const validateAge = (number: number) => {
@@ -168,6 +173,40 @@ const CommonForm = () => {
       );
   };
 
+  const validateSubmit = (
+    name: string,
+    age: number,
+    email: string,
+    password: string,
+    confirmPassword: string,
+    gender: string,
+    photo: File,
+    country: string,
+    terms: boolean
+  ) => {
+    schemaMain
+      .validate({
+        name: name,
+        age: age,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+        gender: gender,
+        photo: photo,
+        country: country,
+        terms: terms,
+      })
+      .then(() => {
+        setIsChecked(true);
+        console.log('validate.submit true');
+      })
+      .catch((err) => {
+        setIsChecked(false);
+        console.log('validate.submit false');
+        console.log('validate.submit err', err);
+      });
+  };
+
   const validateForm = () => {
     const checkbox = termsRef.current as HTMLInputElement | null;
     if (checkbox?.checked) {
@@ -182,6 +221,7 @@ const CommonForm = () => {
       const gender = genderRef.current as HTMLInputElement | null;
       const photo = photoRef.current as HTMLInputElement | null;
       const country = countryRef.current as HTMLInputElement | null;
+      const terms = termsRef.current as HTMLInputElement | null;
       if (
         name &&
         age &&
@@ -194,14 +234,26 @@ const CommonForm = () => {
       ) {
         validateName(name.value);
         validateAge(parseInt(age.value));
-        validateAge(parseInt(age.value));
         validateEmail(email.value);
         validatePassword(password.value, confirmPassword.value);
         validateGender(gender.value);
         validatePhoto(photo.files ? photo.files[0] : null);
         validateCountry(country.value);
 
-        console.log(errors.name);
+        if (photo.files && terms) {
+          console.log('validate.submit start');
+          validateSubmit(
+            name.value,
+            parseInt(age.value),
+            email.value,
+            password.value,
+            confirmPassword.value,
+            gender.value,
+            photo.files[0],
+            country.value,
+            terms.checked
+          );
+        }
       } else {
         throw new Error('something went wrong');
       }
@@ -210,6 +262,57 @@ const CommonForm = () => {
         ...prevErrors,
         terms: 'Conditions & Terms should be accepted',
       }));
+      setIsChecked(false);
+    }
+  };
+
+  // const convertImage = () => {
+  //   const fileInput = photoRef.current as HTMLInputElement | null;
+  //   console.log('fileInput=', fileInput);
+  //   if (fileInput) {
+  //     const files = fileInput.files;
+  //     if (files) {
+  //       convertToBase64(files[0])
+  //         .then((base64String) => {
+  //           console.log('image=', base64String);
+  //           dispatch(setCommonPhoto(base64String));
+  //         })
+  //         .catch((error) => {
+  //           console.error('error=', error);
+  //         });
+  //     }
+  //   }
+  // };
+
+  const throwToStore = async () => {
+    const name = nameRef.current as HTMLInputElement | null;
+    const age = ageRef.current as HTMLInputElement | null;
+    const email = emailRef.current as HTMLInputElement | null;
+    const gender = genderRef.current as HTMLInputElement | null;
+    const photo = photoRef.current as HTMLInputElement | null;
+    const country = countryRef.current as HTMLInputElement | null;
+
+    if (name && age && email && gender && photo && country) {
+      if (photo.files)
+        convertToBase64(photo.files[0])
+          .then((base64String) => {
+            // console.log('image=', base64String);
+
+            console.log('dispatch');
+            dispatch(setCommonPhoto(base64String));
+            dispatch(setCommonName(name.value));
+            dispatch(setCommonAge(parseInt(age.value)));
+            dispatch(setCommonMail(email.value));
+            dispatch(setCommonGender(gender.value));
+            dispatch(setCommonCountry(country.value));
+            console.log('finished');
+          })
+          .then(() => navTo('/'))
+          .catch((error) => {
+            console.error('error=', error);
+          });
+
+      console.log('dispatched');
     }
   };
 
@@ -227,8 +330,10 @@ const CommonForm = () => {
             type="text"
             id="name"
             name="name"
+            autoComplete="name"
             onChange={(event) => {
               validateName(event.target.value);
+              changeValues();
             }}
             ref={nameRef}
           ></input>
@@ -242,7 +347,11 @@ const CommonForm = () => {
             max="1000"
             id="age"
             name="age"
-            onChange={(event) => validateAge(parseInt(event.target.value))}
+            autoComplete="age"
+            onChange={(event) => {
+              validateAge(parseInt(event.target.value));
+              changeValues();
+            }}
             ref={ageRef}
           ></input>
           <span className={styles.errorText}>{errors.age}</span>
@@ -253,7 +362,11 @@ const CommonForm = () => {
             type="email"
             id="email"
             name="email"
-            onChange={(event) => validateEmail(event.target.value)}
+            autoComplete="email"
+            onChange={(event) => {
+              validateEmail(event.target.value);
+              changeValues();
+            }}
             ref={emailRef}
           ></input>
           <span className={styles.errorText}>{errors.email}</span>
@@ -264,12 +377,14 @@ const CommonForm = () => {
             type="password"
             id="password"
             name="password"
+            autoComplete="password"
             onChange={(event) => {
               const confirmPassword =
                 confirmPasswordRef.current as HTMLInputElement | null;
               if (confirmPassword) {
                 validatePassword(event.target.value, confirmPassword?.value);
               }
+              changeValues();
             }}
             ref={passwordRef}
           ></input>
@@ -280,12 +395,13 @@ const CommonForm = () => {
           <input
             type="password"
             id="confirmPassword"
-            name="password"
+            name="confirmPassword"
             onChange={(event) => {
               const password = passwordRef.current as HTMLInputElement | null;
               if (password) {
                 validatePassword(password.value, event.target.value);
               }
+              changeValues();
             }}
             ref={confirmPasswordRef}
           ></input>
@@ -296,7 +412,11 @@ const CommonForm = () => {
           <select
             id="gender"
             name="gender"
-            onChange={(event) => validateGender(event.target.value)}
+            autoComplete="gender"
+            onChange={(event) => {
+              validateGender(event.target.value);
+              changeValues();
+            }}
             ref={genderRef}
           >
             <option value="n/d"></option>
@@ -312,12 +432,14 @@ const CommonForm = () => {
             type="file"
             id="photo"
             name="photo"
+            autoComplete="photo"
             accept="image/jpeg, image/jpeg, image/png"
-            onChange={(event) =>
+            onChange={(event) => {
               validatePhoto(
                 event.currentTarget.files ? event.currentTarget.files[0] : null
-              )
-            }
+              );
+              changeValues();
+            }}
             ref={photoRef}
           ></input>
           <span className={styles.errorText}>{errors.photo}</span>
@@ -328,7 +450,11 @@ const CommonForm = () => {
             type="text"
             id="country"
             name="country"
-            onChange={(event) => handleCountry(event.target.value)}
+            autoComplete="country"
+            onChange={(event) => {
+              handleCountry(event.target.value);
+              changeValues();
+            }}
             onClick={() => setIsShowLabels(true)}
             ref={countryRef}
           ></input>
@@ -365,7 +491,6 @@ const CommonForm = () => {
               id="acceptTerms"
               onChange={() => {
                 validateForm();
-                console.log(checkErrors(errors));
               }}
               ref={termsRef}
             ></input>
@@ -378,9 +503,24 @@ const CommonForm = () => {
           </div>
           <span className={styles.errorText}>{errors.terms}</span>
         </div>
-        {isChecked && <input type="submit" className={styles.button}></input>}
+        {isChecked && (
+          <input
+            type="submit"
+            className={styles.button}
+            onClick={(e) => {
+              e.preventDefault();
+              throwToStore();
+            }}
+          ></input>
+        )}
         {!isChecked && (
-          <button className={`${styles.button} ${styles.unActive}`}>
+          <button
+            className={`${styles.button} ${styles.unActive}`}
+            onClick={(e) => {
+              e.preventDefault();
+              validateForm();
+            }}
+          >
             Submit
           </button>
         )}

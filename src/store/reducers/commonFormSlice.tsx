@@ -2,14 +2,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FormInterface } from './types';
 import { RootState } from '../store';
 
+// const initialState: FormInterface = {
+//   name: null,
+//   age: null,
+//   mail: null,
+//   password: null,
+//   gender: null,
+//   photo: null,
+//   country: null,
+// };
+
 const initialState: FormInterface = {
-  name: null,
-  age: null,
-  mail: null,
-  password: null,
-  gender: null,
+  name: 'Testor',
+  age: 45,
+  mail: 'fg@mail.me',
+  password: 'esfe',
+  gender: 'female',
   photo: null,
-  country: null,
+  country: 'Albania mama mia',
 };
 
 export const commonFormSlice = createSlice({

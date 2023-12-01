@@ -12,6 +12,8 @@ import CommonForm from './components/forms/common_form/commonForm';
 import ReactForm from './components/forms/react_form/reactForm';
 import Terms from './pages/terms/terms';
 import SelectForms from './components/selectForm/selectForms';
+import store from './store/store';
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +31,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
