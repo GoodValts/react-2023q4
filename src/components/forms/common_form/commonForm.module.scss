@@ -29,7 +29,7 @@
   margin-bottom: $marginDesktopDiv2;
 }
 
-label {
+.label {
   display: block;
   font-size: 1rem;
   text-align: center;
@@ -37,7 +37,7 @@ label {
   margin-bottom: $marginDesktopDiv2;
 }
 
-input:not([type="submit"]), select {
+.input, .select {
   display: flex;
   min-width: 220px;
   min-height: 20px;
@@ -45,10 +45,7 @@ input:not([type="submit"]), select {
   color: $highlightedTextColor;
   background-color: rgba($color: #ffffff, $alpha: 0.4);
   margin: 0 auto;
-
-  &:not([type="file"]) {
-    font-size: .9rem;
-  }
+  font-size: .9rem;
 
   &::-webkit-file-upload-button {
     background-color: transparent;
@@ -80,12 +77,13 @@ input:not([type="submit"]), select {
     }
   }
 
-  &[type="file"] {
+  &File {
     color: $highlightedTextColor;
     background-color: rgba($color: #000000, $alpha: 0);
+    font-size: small;
   }
 
-  &[type="checkbox"] {
+  &Checkbox {
     min-height: 1rem;
     min-width: 1rem;
     height: 1rem;

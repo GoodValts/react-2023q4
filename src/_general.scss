@@ -5,6 +5,10 @@ $marginDesktopDiv4: calc($marginDesktop / 4);
 $defaultTextColor: #ffdead;
 $highlightedTextColor: #faebd7;
 
+$defaultReactTextColor: SteelBlue;
+$highlightedReactTextColor: CornflowerBlue;
+$disabledReactTextColor: LightSlateGray;
+
 @mixin _tablet {
   @media (max-width: 1279.98px) {
     @content;

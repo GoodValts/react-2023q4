@@ -63,9 +63,7 @@ const CommonForm = () => {
     navTo('/terms');
   };
 
-  const goBack = () => {
-    navTo(-1);
-  };
+  const goBack = () => navTo(-1);
 
   const handleCountry = (str: string) => {
     const arr = [...countryLabelsArr];
@@ -325,7 +323,9 @@ const CommonForm = () => {
       <form id="commonForm" className={styles.form}>
         <h2 className={styles.header}>Common form</h2>
         <div>
-          <label htmlFor="name">Name:</label>
+          <label className={styles.label} htmlFor="name">
+            Name:
+          </label>
           <input
             type="text"
             id="name"
@@ -336,11 +336,14 @@ const CommonForm = () => {
               changeValues();
             }}
             ref={nameRef}
+            className={styles.input}
           ></input>
           <span className={styles.errorText}>{errors.name}</span>
         </div>
         <div>
-          <label htmlFor="age">Age:</label>
+          <label className={styles.label} htmlFor="age">
+            Age:
+          </label>
           <input
             type="number"
             min="0"
@@ -353,11 +356,14 @@ const CommonForm = () => {
               changeValues();
             }}
             ref={ageRef}
+            className={styles.input}
           ></input>
           <span className={styles.errorText}>{errors.age}</span>
         </div>
         <div>
-          <label htmlFor="email">E-mail:</label>
+          <label className={styles.label} htmlFor="email">
+            E-mail:
+          </label>
           <input
             type="email"
             id="email"
@@ -368,11 +374,14 @@ const CommonForm = () => {
               changeValues();
             }}
             ref={emailRef}
+            className={styles.input}
           ></input>
           <span className={styles.errorText}>{errors.email}</span>
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label className={styles.label} htmlFor="password">
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -387,11 +396,14 @@ const CommonForm = () => {
               changeValues();
             }}
             ref={passwordRef}
+            className={styles.input}
           ></input>
           <span className={styles.errorText}>{errors.password}</span>
         </div>
         <div>
-          <label htmlFor="confirmPassword">Confirm password:</label>
+          <label className={styles.label} htmlFor="confirmPassword">
+            Confirm password:
+          </label>
           <input
             type="password"
             id="confirmPassword"
@@ -404,11 +416,14 @@ const CommonForm = () => {
               changeValues();
             }}
             ref={confirmPasswordRef}
+            className={styles.input}
           ></input>
           <span className={styles.errorText}>{errors.confirmPassword}</span>
         </div>
         <div>
-          <label htmlFor="gender">Gender:</label>
+          <label className={styles.label} htmlFor="gender">
+            Gender:
+          </label>
           <select
             id="gender"
             name="gender"
@@ -418,16 +433,25 @@ const CommonForm = () => {
               changeValues();
             }}
             ref={genderRef}
+            className={styles.select}
           >
-            <option value="n/d"></option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-            <option value="other">other</option>
+            <option className={styles.option} value="n/d"></option>
+            <option className={styles.option} value="male">
+              male
+            </option>
+            <option className={styles.option} value="female">
+              female
+            </option>
+            <option className={styles.option} value="other">
+              other
+            </option>
           </select>
           <span className={styles.errorText}>{errors.gender}</span>
         </div>
         <div>
-          <label htmlFor="photo">Photo:</label>
+          <label className={styles.label} htmlFor="photo">
+            Photo:
+          </label>
           <input
             type="file"
             id="photo"
@@ -441,11 +465,14 @@ const CommonForm = () => {
               changeValues();
             }}
             ref={photoRef}
+            className={`${styles.input} ${styles.inputFile}`}
           ></input>
           <span className={styles.errorText}>{errors.photo}</span>
         </div>
         <div>
-          <label htmlFor="country">Country:</label>
+          <label className={styles.label} htmlFor="country">
+            Country:
+          </label>
           <input
             type="text"
             id="country"
@@ -457,6 +484,7 @@ const CommonForm = () => {
             }}
             onClick={() => setIsShowLabels(true)}
             ref={countryRef}
+            className={styles.input}
           ></input>
           <div className="flex">
             {isShowLabels && (
@@ -493,8 +521,12 @@ const CommonForm = () => {
                 validateForm();
               }}
               ref={termsRef}
+              className={`${styles.input} ${styles.inputCheckbox}`}
             ></input>
-            <label htmlFor="acceptTerms" className={styles.inline}>
+            <label
+              className={`${styles.label} ${styles.inline}`}
+              htmlFor="acceptTerms"
+            >
               I accept{' '}
               <span className={styles.link} onClick={navToTerms}>
                 Conditions & Terms
