@@ -36,7 +36,6 @@
   margin-bottom: 0;
 }
 
-
 .input {
   display: flex;
   width: 100%;
@@ -45,6 +44,44 @@
   text-align: center;
   color: $defaultReactTextColor;
   margin: auto;
+}
+
+.fileInput {
+  content: 0;
+  display: flex;
+  justify-content: center;
+  margin: $marginDesktopDiv4 auto;
+  
+  
+
+  & > * {
+    background-color: blueviolet;
+    text-align: center;
+    color: #323940;
+    height: 200px;
+
+    &::-webkit-file-upload-button{
+      background-color: $highlightedReactTextColor;
+      border: 0px;
+      color: #d8e2f2;
+      border: 0;
+      border-radius: $marginDesktopDiv4;
+      padding: $marginDesktopDiv4 $marginDesktopDiv2;
+      margin: 0 $marginDesktop;
+      margin-right: $marginDesktopDiv2;
+
+      &:hover {
+        cursor: pointer;
+        background-color: royalblue;
+        scale: 0.98;
+        transition-duration: .3s;
+      }
+    }
+  }
+}
+
+.select {
+  text-align: center;
 }
 
 .errorMessage {
@@ -185,10 +222,10 @@
 //   }
 // }
 
-// .link {
-//   text-decoration: underline;
-//   &:hover {
-//     cursor: pointer;
-//     color: $highlightedTextColor;    
-//   }
-// }
+.link {
+  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+    color: $highlightedReactTextColor;    
+  }
+}

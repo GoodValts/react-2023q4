@@ -56,4 +56,9 @@ $disabledReactTextColor: LightSlateGray;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
+  &Center {
+    align-items: center;
+  }
 }
+

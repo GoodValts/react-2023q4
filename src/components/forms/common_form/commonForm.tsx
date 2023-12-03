@@ -12,7 +12,7 @@ import {
   schemaPassword,
   schemaPhoto,
   schemaValidatePassword,
-} from './yup/yupSchemas';
+} from '../data/yup/yupSchemas';
 import { convertToBase64 } from '../data/converterBase64';
 import { useAppDispatch } from '../../../store/hooks';
 import {
