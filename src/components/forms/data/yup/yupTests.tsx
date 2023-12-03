@@ -55,7 +55,6 @@ export const genderValidationReact = yup
   .mixed<{ value: string; label: string }>()
   .required('Gender is a required field')
   .test('gender', 'Gender should exist', (obj) => {
-    console.log(obj);
     if (obj === gendersArr[0]) return false;
     return gendersArr.map((obj) => obj.value).includes(obj.value);
   });
@@ -64,8 +63,6 @@ export const photoValidation = yup
   .mixed<File>()
   .required('Photo is a required field')
   .test('fileSize', 'Max file size exceeded', (value) => {
-    console.log(value);
-    console.log(value.size);
     const bitesInByte = 16;
     const bytesInKilobyte = 1024;
     const kilobyteInMegabyte = 1024;
@@ -110,7 +107,6 @@ export const countryValidationReact = yup
   .mixed<{ value: string; label: string }>()
   .required('Country is a required field')
   .test('country', 'Country should exist', (obj) => {
-    console.log(obj);
     return countriesArr.map((obj) => obj.value).includes(obj.value);
   });
 

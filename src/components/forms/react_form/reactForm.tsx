@@ -57,27 +57,6 @@ export const MyInput = ({
   </>
 );
 
-{
-  /* <Controller
-            name="name"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                className={styles.input}
-                type="text"
-                required={true}
-                inputProps={{
-                  style: {
-                    textAlign: 'center',
-                    color: '#323940',
-                  },
-                }}
-              />
-            )}
-          /> */
-}
-
 const ReactForm = () => {
   const navTo = useNavigate();
   const goBack = () => navTo(-1);
@@ -123,24 +102,6 @@ const ReactForm = () => {
             required={true}
             styles={styles.input}
           />
-          {/* <Controller
-            name="name"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                className={styles.input}
-                type="text"
-                required={true}
-                inputProps={{
-                  style: {
-                    textAlign: 'center',
-                    color: '#323940',
-                  },
-                }}
-              />
-            )}
-          /> */}
           <p className={styles.errorMessage}>
             {errors.name ? errors.name.message : ''}
           </p>
@@ -226,18 +187,6 @@ const ReactForm = () => {
         </>
         <>
           <label className={styles.label}>Gender:</label>
-          {/* <input
-            type="text"
-            name="gender"
-            control={control}
-            rules={{ required: true }}
-            autoComplete="on"
-            list="datalistGender"
-          ></input>
-          <datalist id="datalistGender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </datalist> */}
           <Controller
             name="gender"
             control={control}
@@ -256,7 +205,6 @@ const ReactForm = () => {
                   }),
                 }}
                 {...field}
-                // options={options as unknown as GroupBase<string>[]}
                 options={gendersArr}
               />
             )}
@@ -313,23 +261,3 @@ const ReactForm = () => {
 };
 
 export default ReactForm;
-
-// <Input
-//   className={styles.input}
-//   type="text"
-//   {...register('name', {
-//     required: true,
-//     pattern: /^[A-Z][a-zA-Z]*$/,
-//   })}
-// ></Input>
-// {errors.name && (
-//   <p className={styles.errorMessage}>This field is required</p>
-// )}
-
-{
-  /* <>
-  <label className={styles.label}>Country:</label>
-  <Select label="Country" options={countriesArr} {...register('Age')} />
-  <p className={styles.errorMessage}>{someError}</p>
-</>; */
-}

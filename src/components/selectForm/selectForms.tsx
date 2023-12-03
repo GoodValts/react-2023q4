@@ -10,7 +10,6 @@ import {
   selectCommonPhoto,
 } from '../../store/reducers/commonFormSlice';
 import { convertFromBase64 } from '../forms/data/converterBase64';
-// import photo from '../../../public/Elbrus2016-111.jpg';
 import {
   selectReactAge,
   selectReactCountry,
@@ -72,11 +71,6 @@ const SelectForms = () => {
                   alt={`${commonName} photo`}
                   className={styles.image}
                 />
-                {/* <img
-                    src={photo}
-                    alt={`${commonName} photo`}
-                    className={styles.image}
-                  /> */}
               </div>
               <h3
                 className={`${styles.header} ${
@@ -138,11 +132,6 @@ const SelectForms = () => {
                   alt={`${reactName} photo`}
                   className={styles.image}
                 />
-                {/* <img
-                  src={photo}
-                  alt={`${commonName} photo`}
-                  className={styles.image}
-                /> */}
               </div>
               <h3
                 className={`${styles.header} ${

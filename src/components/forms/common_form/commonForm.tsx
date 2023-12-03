@@ -71,11 +71,7 @@ const CommonForm = () => {
     setCountryLabels(newArr);
 
     const input = countryRef.current as HTMLInputElement | null;
-    console.log('input?.value=', input?.value);
     if (input) validateCountry(input.value);
-
-    console.log('str=', str);
-    console.log('newArr=', newArr);
   };
 
   const changeValues = () => {
@@ -196,12 +192,9 @@ const CommonForm = () => {
       })
       .then(() => {
         setIsChecked(true);
-        console.log('validate.submit true');
       })
-      .catch((err) => {
+      .catch(() => {
         setIsChecked(false);
-        console.log('validate.submit false');
-        console.log('validate.submit err', err);
       });
   };
 
@@ -239,7 +232,6 @@ const CommonForm = () => {
         validateCountry(country.value);
 
         if (photo.files && terms) {
-          console.log('validate.submit start');
           validateSubmit(
             name.value,
             parseInt(age.value),
@@ -264,24 +256,6 @@ const CommonForm = () => {
     }
   };
 
-  // const convertImage = () => {
-  //   const fileInput = photoRef.current as HTMLInputElement | null;
-  //   console.log('fileInput=', fileInput);
-  //   if (fileInput) {
-  //     const files = fileInput.files;
-  //     if (files) {
-  //       convertToBase64(files[0])
-  //         .then((base64String) => {
-  //           console.log('image=', base64String);
-  //           dispatch(setCommonPhoto(base64String));
-  //         })
-  //         .catch((error) => {
-  //           console.error('error=', error);
-  //         });
-  //     }
-  //   }
-  // };
-
   const throwToStore = async () => {
     const name = nameRef.current as HTMLInputElement | null;
     const age = ageRef.current as HTMLInputElement | null;
@@ -294,23 +268,17 @@ const CommonForm = () => {
       if (photo.files)
         convertToBase64(photo.files[0])
           .then((base64String) => {
-            // console.log('image=', base64String);
-
-            console.log('dispatch');
             dispatch(setCommonPhoto(base64String));
             dispatch(setCommonName(name.value));
             dispatch(setCommonAge(parseInt(age.value)));
             dispatch(setCommonMail(email.value));
             dispatch(setCommonGender(gender.value));
             dispatch(setCommonCountry(country.value));
-            console.log('finished');
           })
           .then(() => navTo('/'))
           .catch((error) => {
-            console.error('error=', error);
+            console.error('error=', error.message);
           });
-
-      console.log('dispatched');
     }
   };
 
