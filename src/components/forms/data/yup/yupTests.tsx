@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { countriesArr } from '../countries';
+import { gendersArr } from '../genders';
 
 export const nameValidation = yup
   .string()
@@ -50,10 +51,21 @@ export const genderValidation = yup
   .required('Gender is a required field')
   .notOneOf(['n/d'], 'Gender is a required field');
 
+export const genderValidationReact = yup
+  .mixed<{ value: string; label: string }>()
+  .required('Gender is a required field')
+  .test('gender', 'Gender should exist', (obj) => {
+    console.log(obj);
+    if (obj === gendersArr[0]) return false;
+    return gendersArr.map((obj) => obj.value).includes(obj.value);
+  });
+
 export const photoValidation = yup
   .mixed<File>()
   .required('Photo is a required field')
   .test('fileSize', 'Max file size exceeded', (value) => {
+    console.log(value);
+    console.log(value.size);
     const bitesInByte = 16;
     const bytesInKilobyte = 1024;
     const kilobyteInMegabyte = 1024;
@@ -66,6 +78,25 @@ export const photoValidation = yup
     return supportedFormats.includes(value.type);
   });
 
+export const photoValidationReact = yup
+  .mixed<File[]>()
+  .required('Photo is a required field')
+  .test('fileAmount', 'Photo is a required field', (value) => {
+    return value.length === 1;
+  })
+  .test('fileSize', 'Max file size exceeded', (value) => {
+    const bitesInByte = 16;
+    const bytesInKilobyte = 1024;
+    const kilobyteInMegabyte = 1024;
+    if (!value[0]) return true;
+    return value[0].size <= bitesInByte * bytesInKilobyte * kilobyteInMegabyte;
+  })
+  .test('fileType', 'Photo should be .jpg / .jpeg / .png', (value) => {
+    if (!value[0]) return true;
+    const supportedFormats = ['image/jpeg', 'image/jpg', 'image/png'];
+    return supportedFormats.includes(value[0].type);
+  });
+
 export const countryValidation = yup
   .string()
   .required()
@@ -73,6 +104,14 @@ export const countryValidation = yup
     if (!string) return true;
     const newArr = countriesArr.map((el) => el.value);
     return newArr.includes(string);
+  });
+
+export const countryValidationReact = yup
+  .mixed<{ value: string; label: string }>()
+  .required('Country is a required field')
+  .test('country', 'Country should exist', (obj) => {
+    console.log(obj);
+    return countriesArr.map((obj) => obj.value).includes(obj.value);
   });
 
 export const termsValidation = yup

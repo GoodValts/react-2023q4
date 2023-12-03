@@ -38,46 +38,64 @@
 
 .input {
   display: flex;
+  justify-content: center;
   width: 100%;
   min-width: 220px;
-  min-height: 20px;
+  min-height: 32px;
   text-align: center;
-  color: $defaultReactTextColor;
+  color: rgb(50, 57, 64);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  background: transparent;
+  border: 0px;
+  border-bottom: 1px solid $disabledReactTextColor;
   margin: auto;
+
+  &:focus {
+    border: 0px;
+    outline: 0;
+    border-bottom: 2px solid royalblue;
+  }
 }
 
 .fileInput {
   content: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: $marginDesktopDiv4 auto;
-  
-  
+  text-align: center;
+  color: #323940;
+  border: 0px;
 
-  & > * {
-    background-color: blueviolet;
-    text-align: center;
-    color: #323940;
-    height: 200px;
-
-    &::-webkit-file-upload-button{
-      background-color: $highlightedReactTextColor;
-      border: 0px;
-      color: #d8e2f2;
-      border: 0;
-      border-radius: $marginDesktopDiv4;
-      padding: $marginDesktopDiv4 $marginDesktopDiv2;
-      margin: 0 $marginDesktop;
-      margin-right: $marginDesktopDiv2;
-
-      &:hover {
-        cursor: pointer;
-        background-color: royalblue;
-        scale: 0.98;
-        transition-duration: .3s;
-      }
-    }
+  &:focus {
+    border: 0px;
   }
+
+  &::-webkit-file-upload-button{
+    background-color: $highlightedReactTextColor;
+    border: 0px;
+    color: #d8e2f2;
+    border: 0;
+    border-radius: $marginDesktopDiv4;
+    padding: $marginDesktopDiv4 $marginDesktopDiv2;
+    margin: 0 $marginDesktop;
+    margin-right: $marginDesktopDiv2;
+
+    &:hover {
+      cursor: pointer;
+      background-color: royalblue;
+      scale: 0.98;
+      transition-duration: .3s;
+    }
+  }       
+}
+
+.checkBoxInput {
+  width: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  margin: $marginDesktopDiv2;
 }
 
 .select {

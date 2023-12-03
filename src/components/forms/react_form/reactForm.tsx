@@ -2,48 +2,53 @@ import styles from './reactForm.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Select, { CSSObjectWithLabel } from 'react-select';
 import { countriesArr } from '../data/countries';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, Path, UseFormRegister } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaMain } from '../data/yup/yupSchemas';
-import { Checkbox, Input, makeStyles } from '@material-ui/core';
+import { reactSchemaMain } from '../data/yup/yupSchemas';
+import { gendersArr } from '../data/genders';
 
-const useStyles = makeStyles({
-  hidePseudoElements: {
-    '&::before, &::after': {
-      display: 'none',
-    },
-  },
-});
+interface IFormValues {
+  name: string;
+  age: number;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  gender: { value: string; label: string };
+  photo: File[];
+  country: { value: string; label: string };
+  terms: boolean;
+}
 
-const ReactForm = () => {
-  const classes = useStyles();
+type InputProps = {
+  styles: string;
+  type?: string;
+  accept?: string;
+  label: Path<IFormValues>;
+  register: UseFormRegister<IFormValues>;
+  required: boolean;
+};
 
-  const navTo = useNavigate();
-  const goBack = () => navTo(-1);
-  const navToTerms = () => navTo('/terms');
+export const MyInput = ({
+  accept,
+  styles,
+  type,
+  label,
+  register,
+  required,
+}: InputProps) => (
+  <>
+    <input
+      accept={accept}
+      type={type || 'text'}
+      className={styles}
+      autoComplete="on"
+      {...register(label, { required })}
+    />
+  </>
+);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ mode: 'onChange', resolver: yupResolver(schemaMain) });
-
-  return (
-    <section className={styles.section}>
-      <button className={styles.returnButton} onClick={goBack}>
-        Return
-      </button>
-
-      <form
-        className={styles.form}
-        onSubmit={handleSubmit((d) => {
-          console.log(d);
-        })}
-      >
-        <h2 className={styles.header}>React form</h2>
-        <>
-          <label className={styles.label}>Name:</label>
-          <Controller
+{
+  /* <Controller
             name="name"
             control={control}
             render={({ field }) => (
@@ -60,39 +65,45 @@ const ReactForm = () => {
                 }}
               />
             )}
-          />
-          <p className={styles.errorMessage}>
-            {errors.name ? errors.name.message : ''}
-          </p>
-        </>
+          /> */
+}
+
+const ReactForm = () => {
+  const navTo = useNavigate();
+  const goBack = () => navTo(-1);
+  const navToTerms = () => navTo('/terms');
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: 'onChange', resolver: yupResolver(reactSchemaMain) });
+
+  return (
+    <section className={styles.section}>
+      <button className={styles.returnButton} onClick={goBack}>
+        Return
+      </button>
+
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit((d) => {
+          console.log(d);
+        })}
+      >
+        <h2 className={styles.header}>React form</h2>
+
         <>
-          <label className={styles.label}>Age:</label>
-          <Controller
-            name="age"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                className={styles.input}
-                type="number"
-                required={true}
-                inputProps={{
-                  style: {
-                    textAlign: 'center',
-                    color: '#323940',
-                  },
-                }}
-              />
-            )}
+          <label className={styles.label}>Name:</label>
+          <MyInput
+            label="name"
+            register={register}
+            required={true}
+            styles={styles.input}
           />
-          <p className={styles.errorMessage}>
-            {errors.age ? errors.age.message : ''}
-          </p>
-        </>
-        <>
-          <label className={styles.label}>E-mail:</label>
-          <Controller
-            name="email"
+          {/* <Controller
+            name="name"
             control={control}
             render={({ field }) => (
               <Input
@@ -108,6 +119,31 @@ const ReactForm = () => {
                 }}
               />
             )}
+          /> */}
+          <p className={styles.errorMessage}>
+            {errors.name ? errors.name.message : ''}
+          </p>
+        </>
+        <>
+          <label className={styles.label}>Age:</label>
+          <MyInput
+            label="age"
+            register={register}
+            required={true}
+            styles={styles.input}
+            type="number"
+          />
+          <p className={styles.errorMessage}>
+            {errors.age ? errors.age.message : ''}
+          </p>
+        </>
+        <>
+          <label className={styles.label}>E-mail:</label>
+          <MyInput
+            label="email"
+            register={register}
+            required={true}
+            styles={styles.input}
           />
           <p className={styles.errorMessage}>
             {errors.email ? errors.email.message : ''}
@@ -115,23 +151,12 @@ const ReactForm = () => {
         </>
         <>
           <label className={styles.label}>Password:</label>
-          <Controller
-            name="password"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                className={styles.input}
-                type="password"
-                required={true}
-                inputProps={{
-                  style: {
-                    textAlign: 'center',
-                    color: '#323940',
-                  },
-                }}
-              />
-            )}
+          <MyInput
+            label="password"
+            register={register}
+            required={true}
+            styles={styles.input}
+            type="password"
           />
           <p className={styles.errorMessage}>
             {errors.password ? errors.password.message : ''}
@@ -139,23 +164,12 @@ const ReactForm = () => {
         </>
         <>
           <label className={styles.label}>Confirm password:</label>
-          <Controller
-            name="confirmPassword"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                className={styles.input}
-                type="password"
-                required={true}
-                inputProps={{
-                  style: {
-                    textAlign: 'center',
-                    color: '#323940',
-                  },
-                }}
-              />
-            )}
+          <MyInput
+            label="confirmPassword"
+            register={register}
+            required={true}
+            styles={styles.input}
+            type="password"
           />
           <p className={styles.errorMessage}>
             {errors.confirmPassword ? errors.confirmPassword.message : ''}
@@ -191,6 +205,18 @@ const ReactForm = () => {
         </>
         <>
           <label className={styles.label}>Gender:</label>
+          {/* <input
+            type="text"
+            name="gender"
+            control={control}
+            rules={{ required: true }}
+            autoComplete="on"
+            list="datalistGender"
+          ></input>
+          <datalist id="datalistGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </datalist> */}
           <Controller
             name="gender"
             control={control}
@@ -210,12 +236,7 @@ const ReactForm = () => {
                 }}
                 {...field}
                 // options={options as unknown as GroupBase<string>[]}
-                options={[
-                  { value: 'n/d', label: '' },
-                  { value: 'male', label: 'Male' },
-                  { value: 'female', label: 'Female' },
-                  { value: 'other', label: 'Other' },
-                ]}
+                options={gendersArr}
               />
             )}
           />
@@ -226,42 +247,26 @@ const ReactForm = () => {
 
         <>
           <label className={styles.label}>Photo:</label>
-          <div className="flex flexCenter">
-            <Controller
-              name="photo"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  className={`${classes.hidePseudoElements} ${styles.fileInput}`}
-                  type="file"
-                  required={true}
-                  inputProps={{
-                    style: {
-                      height: '25px',
-                    },
-                  }}
-                />
-              )}
-            />
-          </div>
+          <MyInput
+            label="photo"
+            register={register}
+            required={true}
+            styles={`${styles.input} ${styles.fileInput}`}
+            type="file"
+            accept="image/jpeg, image/jpeg, image/png"
+          />
           {errors.photo && (
             <p className={styles.errorMessage}>{errors.photo.message}</p>
           )}
         </>
         <>
           <div className="flex flexCenter">
-            <Controller
-              name="terms"
-              control={control}
-              render={({ field }) => (
-                <Checkbox
-                  {...field}
-                  className={styles.checkBox}
-                  required={true}
-                  color={'primary'}
-                />
-              )}
+            <MyInput
+              label="terms"
+              register={register}
+              required={true}
+              styles={`${styles.input} ${styles.checkBoxInput}`}
+              type="checkbox"
             />
             <label className={styles.label}>
               I accept{' '}
