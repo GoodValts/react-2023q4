@@ -6,6 +6,16 @@ import { useForm, Controller, Path, UseFormRegister } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { reactSchemaMain } from '../data/yup/yupSchemas';
 import { gendersArr } from '../data/genders';
+import { useAppDispatch } from '../../../store/hooks';
+import {
+  setReactAge,
+  setReactCountry,
+  setReactGender,
+  setReactMail,
+  setReactName,
+  setReactPhoto,
+} from '../../../store/reducers/reactFormSlice';
+import { convertToBase64 } from '../data/converterBase64';
 
 interface IFormValues {
   name: string;
@@ -41,7 +51,7 @@ export const MyInput = ({
       accept={accept}
       type={type || 'text'}
       className={styles}
-      autoComplete="on"
+      autoComplete={label}
       {...register(label, { required })}
     />
   </>
@@ -73,11 +83,13 @@ const ReactForm = () => {
   const goBack = () => navTo(-1);
   const navToTerms = () => navTo('/terms');
 
+  const dispatch = useAppDispatch();
+
   const {
     control,
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ mode: 'onChange', resolver: yupResolver(reactSchemaMain) });
 
   return (
@@ -89,7 +101,16 @@ const ReactForm = () => {
       <form
         className={styles.form}
         onSubmit={handleSubmit((d) => {
-          console.log(d);
+          convertToBase64(d.photo[0])
+            .then((base64String) => {
+              dispatch(setReactName(d.name));
+              dispatch(setReactAge(d.age));
+              dispatch(setReactMail(d.email));
+              dispatch(setReactGender(d.gender.value));
+              dispatch(setReactPhoto(base64String));
+              dispatch(setReactCountry(d.country.value));
+            })
+            .catch((err) => console.error(err.message));
         })}
       >
         <h2 className={styles.header}>React form</h2>
@@ -281,7 +302,9 @@ const ReactForm = () => {
         </>
 
         <input
-          className={`${styles.button} ${styles.buttonDisabled}`}
+          className={`${styles.button} ${
+            !isValid ? styles.buttonDisabled : ''
+          }`}
           type="submit"
         />
       </form>
