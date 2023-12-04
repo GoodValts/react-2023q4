@@ -21,6 +21,7 @@ import {
   setCommonGender,
   setCommonMail,
   setCommonName,
+  setCommonPassword,
   setCommonPhoto,
 } from '../../../store/reducers/commonFormSlice';
 
@@ -263,8 +264,9 @@ const CommonForm = () => {
     const gender = genderRef.current as HTMLInputElement | null;
     const photo = photoRef.current as HTMLInputElement | null;
     const country = countryRef.current as HTMLInputElement | null;
+    const password = passwordRef.current as HTMLInputElement | null;
 
-    if (name && age && email && gender && photo && country) {
+    if (name && age && email && gender && photo && country && password) {
       if (photo.files)
         convertToBase64(photo.files[0])
           .then((base64String) => {
@@ -274,6 +276,7 @@ const CommonForm = () => {
             dispatch(setCommonMail(email.value));
             dispatch(setCommonGender(gender.value));
             dispatch(setCommonCountry(country.value));
+            dispatch(setCommonPassword(password.value));
           })
           .then(() => navTo('/'))
           .catch((error) => {

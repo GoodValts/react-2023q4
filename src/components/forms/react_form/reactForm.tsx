@@ -1,8 +1,7 @@
 import styles from './reactForm.module.scss';
 import { useNavigate } from 'react-router-dom';
-import Select, { CSSObjectWithLabel } from 'react-select';
 import { countriesArr } from '../data/countries';
-import { useForm, Controller, Path, UseFormRegister } from 'react-hook-form';
+import { useForm, Path, UseFormRegister } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { reactSchemaMain } from '../data/yup/yupSchemas';
 import { gendersArr } from '../data/genders';
@@ -13,9 +12,12 @@ import {
   setReactGender,
   setReactMail,
   setReactName,
+  setReactPassword,
   setReactPhoto,
 } from '../../../store/reducers/reactFormSlice';
 import { convertToBase64 } from '../data/converterBase64';
+import React, { useEffect, useRef, useState } from 'react';
+import { UseFormTrigger, UseFormSetValue } from 'react-hook-form/dist/types';
 
 interface IFormValues {
   name: string;
@@ -23,9 +25,9 @@ interface IFormValues {
   email: string;
   password: string;
   confirmPassword: string;
-  gender: { value: string; label: string };
+  gender: string;
   photo: File[];
-  country: { value: string; label: string };
+  country: string;
   terms: boolean;
 }
 
@@ -57,6 +59,92 @@ export const MyInput = ({
   </>
 );
 
+type SelectProps = {
+  dataArray: { value: string; label: string }[];
+  name: Path<IFormValues>;
+  setValue: UseFormSetValue<IFormValues>;
+  trigger: UseFormTrigger<IFormValues>;
+};
+
+const CustomSelect = ({ name, dataArray, setValue, trigger }: SelectProps) => {
+  const [inputValue, setInputValue] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [filteredOptions, setFilteredOptions] = useState(dataArray);
+  const dropdownRef = useRef<HTMLUListElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const value = e.target.value;
+    console.log('handleInputChange value=', value);
+    setInputValue(value);
+    const filtered = dataArray.filter((option) =>
+      option.label.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredOptions(filtered);
+    setValue(name, e.target.value);
+    trigger(name);
+  };
+
+  const handleInputClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleOptionClick = (value: string) => {
+    setInputValue(value);
+    console.log('handleOptionClick value=', value);
+
+    setIsDropdownOpen(false);
+    setFilteredOptions(dataArray);
+
+    setValue(name, value);
+    trigger(name);
+  };
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node) &&
+      inputRef.current !== e.target
+    ) {
+      setIsDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div>
+      <input
+        className={`${styles.input} ${styles.select}`}
+        type="text"
+        value={inputValue}
+        onChange={(e) => handleInputChange(e)}
+        onClick={handleInputClick}
+        placeholder={`Select ${name}...`}
+        ref={inputRef}
+      />
+      {isDropdownOpen && (
+        <ul ref={dropdownRef} className={styles.selectList}>
+          {filteredOptions.map((option, index) => (
+            <li
+              key={index}
+              onClick={() => handleOptionClick(option.label)}
+              className={styles.selectListItem}
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
 const ReactForm = () => {
   const navTo = useNavigate();
   const goBack = () => navTo(-1);
@@ -65,9 +153,10 @@ const ReactForm = () => {
   const dispatch = useAppDispatch();
 
   const {
-    control,
     register,
     handleSubmit,
+    trigger,
+    setValue,
     formState: { errors, isValid },
   } = useForm({ mode: 'onChange', resolver: yupResolver(reactSchemaMain) });
 
@@ -85,10 +174,12 @@ const ReactForm = () => {
               dispatch(setReactName(d.name));
               dispatch(setReactAge(d.age));
               dispatch(setReactMail(d.email));
-              dispatch(setReactGender(d.gender.value));
+              dispatch(setReactGender(d.gender));
               dispatch(setReactPhoto(base64String));
-              dispatch(setReactCountry(d.country.value));
+              dispatch(setReactCountry(d.country));
+              dispatch(setReactPassword(d.password));
             })
+            .then(() => navTo('/'))
             .catch((err) => console.error(err.message));
         })}
       >
@@ -159,27 +250,11 @@ const ReactForm = () => {
         </>
         <>
           <label className={styles.label}>Country:</label>
-          <Controller
+          <CustomSelect
             name="country"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <Select
-                styles={{
-                  valueContainer: (baseStyles: CSSObjectWithLabel) => ({
-                    ...baseStyles,
-                    textAlign: 'center',
-                    marginLeft: '36px',
-                  }),
-                  option: (baseStyles: CSSObjectWithLabel) => ({
-                    ...baseStyles,
-                    textAlign: 'center',
-                  }),
-                }}
-                {...field}
-                options={countriesArr}
-              />
-            )}
+            dataArray={countriesArr}
+            setValue={setValue}
+            trigger={trigger}
           />
           <p className={styles.errorMessage}>
             {errors.country ? errors.country.message : ''}
@@ -187,33 +262,16 @@ const ReactForm = () => {
         </>
         <>
           <label className={styles.label}>Gender:</label>
-          <Controller
+          <CustomSelect
             name="gender"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <Select
-                styles={{
-                  valueContainer: (baseStyles: CSSObjectWithLabel) => ({
-                    ...baseStyles,
-                    textAlign: 'center',
-                    marginLeft: '36px',
-                  }),
-                  option: (baseStyles: CSSObjectWithLabel) => ({
-                    ...baseStyles,
-                    textAlign: 'center',
-                  }),
-                }}
-                {...field}
-                options={gendersArr}
-              />
-            )}
+            dataArray={gendersArr}
+            setValue={setValue}
+            trigger={trigger}
           />
           <p className={styles.errorMessage}>
             {errors.gender ? errors.gender.message : ''}
           </p>
         </>
-
         <>
           <label className={styles.label}>Photo:</label>
           <MyInput

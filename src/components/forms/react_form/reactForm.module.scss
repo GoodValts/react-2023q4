@@ -99,7 +99,49 @@
 }
 
 .select {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid rgba($color: $disabledReactTextColor, $alpha: .4);
+  border-radius: 4px;
+  font-size: .9rem;
+  padding: 1px;
+  
+
+  &:focus {
+    padding: 0px;
+    outline: 0;
+    border: 2px solid royalblue;
+  }
+}
+
+.selectList {
+  position: absolute;
+  width: 320px;
+  max-height: 256px;
+  overflow: auto;
+  background-color: #ffffff;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: $marginDesktopDiv2;
+  z-index: 2;
+}
+
+.selectListItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
   text-align: center;
+  list-style-type: none;
+  font-size: 1rem;
+  color: rgb(50, 57, 64);
+  margin: auto;
+  bottom: 10px;
+  
+  &:hover {
+    cursor: pointer;
+    background-color: rgba($color: #deebff, $alpha: 1);
+  }
 }
 
 .errorMessage {

@@ -52,11 +52,28 @@ export const genderValidation = yup
   .notOneOf(['n/d'], 'Gender is a required field');
 
 export const genderValidationReact = yup
-  .mixed<{ value: string; label: string }>()
+  .string()
   .required('Gender is a required field')
   .test('gender', 'Gender should exist', (obj) => {
-    if (obj === gendersArr[0]) return false;
-    return gendersArr.map((obj) => obj.value).includes(obj.value);
+    console.log('country obj=', obj);
+    return gendersArr.map((obj) => obj.value).includes(obj.toLocaleLowerCase());
+  });
+
+export const countryValidation = yup
+  .string()
+  .required()
+  .test('Country should exist', (string) => {
+    if (!string) return true;
+    const newArr = countriesArr.map((el) => el.value);
+    return newArr.includes(string);
+  });
+
+export const countryValidationReact = yup
+  .string()
+  .required('Country is a required field')
+  .test('country', 'Country should exist', (obj) => {
+    console.log('country obj=', obj);
+    return countriesArr.map((el) => el.value).includes(obj);
   });
 
 export const photoValidation = yup
@@ -92,22 +109,6 @@ export const photoValidationReact = yup
     if (!value[0]) return true;
     const supportedFormats = ['image/jpeg', 'image/jpg', 'image/png'];
     return supportedFormats.includes(value[0].type);
-  });
-
-export const countryValidation = yup
-  .string()
-  .required()
-  .test('Country should exist', (string) => {
-    if (!string) return true;
-    const newArr = countriesArr.map((el) => el.value);
-    return newArr.includes(string);
-  });
-
-export const countryValidationReact = yup
-  .mixed<{ value: string; label: string }>()
-  .required('Country is a required field')
-  .test('country', 'Country should exist', (obj) => {
-    return countriesArr.map((obj) => obj.value).includes(obj.value);
   });
 
 export const termsValidation = yup
