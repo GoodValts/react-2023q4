@@ -1,0 +1,20 @@
+@import '../../general';
+
+.header {
+  color: $defaultTextColor;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: $marginDesktop;
+}
+
+.paragraph{
+  color: $defaultTextColor;
+  font-size: 1rem;
+  text-align: center;
+  margin: $marginDesktopDiv2;
+}
+
+.button {
+  @include _button;
+  margin: $marginDesktop auto;
+}

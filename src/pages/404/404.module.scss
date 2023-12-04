@@ -1,0 +1,27 @@
+@import '../../general';
+
+.header {
+  text-align: center;
+  color: $defaultTextColor;
+  padding-top: $marginDesktop;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  color: $highlightedTextColor;
+  position: absolute;
+  top: 0;
+
+  &__loading {
+    border-radius: $marginDesktop;
+    opacity: 0.8;
+  }
+}
+
+.button {
+  @include _button;
+}

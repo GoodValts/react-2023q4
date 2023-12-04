@@ -1,0 +1,64 @@
+$marginDesktop: 20px;
+$marginDesktopDiv2: calc($marginDesktop / 2);
+$marginDesktopDiv4: calc($marginDesktop / 4);
+
+$defaultTextColor: #ffdead;
+$highlightedTextColor: #faebd7;
+
+$defaultReactTextColor: SteelBlue;
+$highlightedReactTextColor: CornflowerBlue;
+$disabledReactTextColor: LightSlateGray;
+
+@mixin _tablet {
+  @media (max-width: 1279.98px) {
+    @content;
+  }
+}
+
+@mixin _mobile {
+  @media (max-width: 767.98px) {
+    @content;
+  }
+}
+
+@mixin _button() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  background-image: radial-gradient(
+    ellipse,
+    rgba(98, 141, 227, 0.5) 0%,
+    rgba(6, 94, 153, 0.5) 100%,
+    #6b8cce 100%,
+    #a2b6df 100%
+  );
+  color: $highlightedTextColor;
+  border: 0;
+  border-radius: $marginDesktopDiv2;
+  padding: $marginDesktopDiv4 $marginDesktopDiv2;
+  margin: $marginDesktopDiv4;
+
+  &:hover {
+    cursor: pointer;
+    background-image: linear-gradient(
+      to top,
+      #0a2d74 0%,
+      #1e3c72 1%,
+      #2a5298 100%
+    );
+    color: $defaultTextColor;
+    scale: 0.95;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &Center {
+    align-items: center;
+  }
+}
+
