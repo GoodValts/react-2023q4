@@ -1,6 +1,6 @@
 # React-2023Q4
 
-Repository for The Rolling Scopes School [React course](https://github.com/rolling-scopes-school/tasks/tree/master/react)
+Repository for The Rolling Scopes School [React course](https://github.com/rolling-scopes-school/tasks/tree/master/react).
 
 ### Modules:
 1. **React. Components**: react project setup, class components, error boundary
