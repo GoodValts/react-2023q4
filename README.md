@@ -2,7 +2,7 @@
 
 Repository for The Rolling Scopes School [React course](https://github.com/rolling-scopes-school/tasks/tree/master/react)
 
-### Modules
+### Modules:
 1. **React. Components**: react project setup, class components, error boundary
 1. **React. Routing**: functional components, hooks, router
 1. **React. Tests / Context API**: contextAPI, testing library
